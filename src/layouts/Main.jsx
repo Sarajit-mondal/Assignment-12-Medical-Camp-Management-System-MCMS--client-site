@@ -5,9 +5,8 @@ const Main = () => {
   return (
     <div className='min-h-screen flex justify-between flex-col'>
       <Navbar />
-      <main>
+      <main className='mt-20'>
         <Outlet />
-        dsfsdfsdf
       </main>
       <Footer />
     </div>
