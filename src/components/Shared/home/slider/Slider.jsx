@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 function Slider() {
   return (
-    <div className="text-center z-0">
+    <div className="text-center z-0 mt-5">
     <Swiper
       navigation={true}
       freeMode={true}
