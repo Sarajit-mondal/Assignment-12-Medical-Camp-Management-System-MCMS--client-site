@@ -1,6 +1,8 @@
 import useAllCamps from "../../hooks/useAllCamps"
+import ButtonTwo from "../Shared/Button/ButtonTwo"
 import Container from "../Shared/container/Container"
 import CampCard from "./CampCard"
+import {Link} from 'react-router-dom'
 
 function PopularCamp() {
   const {data : allCamp =[]} = useAllCamps()
@@ -19,7 +21,12 @@ function PopularCamp() {
            popularCamps && popularCamps.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
           }
         </div>
-        
+        {/* button */}
+         <div className="mt-16">
+          <Link>
+          <ButtonTwo buttonText={"See All Camps"}></ButtonTwo>
+          </Link>
+         </div>
       </Container>
     </div>
   )

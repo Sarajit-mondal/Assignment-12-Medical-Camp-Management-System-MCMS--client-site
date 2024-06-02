@@ -32,7 +32,7 @@ const Navbar = () => {
           </Link>
 
           <div className='space-x-5 font-bold'>
-            <NavLink to='/camps'>
+            <NavLink to='/allCamps'>
             Available Camps
             </NavLink>
             {/* //join with us Dropdown */}
