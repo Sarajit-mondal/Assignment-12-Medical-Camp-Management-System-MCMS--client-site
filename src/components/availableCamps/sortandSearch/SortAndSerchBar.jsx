@@ -17,8 +17,8 @@ const SortAndSerchBar = ({layoutColumns,setLayoutColumns,handleSearch,handleSort
           className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="">Sort By</option>
-          <option value="most-registered">Most Registered</option>
-          <option value="camp-fees">Camp Fees</option>
+          <option value="ParticipantCount">Most Registered</option>
+          <option value="CampFees">Camp Fees</option>
           <option value="alphabetical">Alphabetical Order</option>
         </select>
         {/* layoutbutton */}

@@ -3,31 +3,48 @@ import Container from "../../components/Shared/container/Container"
 import useAxiosCommon from "../../hooks/useAxiosCommon"
 import CampCard from "../../components/popularCamp/CampCard"
 import SortAndSerchBar from "../../components/availableCamps/sortandSearch/SortAndSerchBar"
+import { useQuery } from "@tanstack/react-query"
+import LoadingSpinner from "../../components/Shared/LoadingSpinner"
+
 
 
 function AvailableCamps() {
-const axiosCommon = useAxiosCommon()
-const [availableCamps,setAvailableCamps] =useState([])
-// search & sort 
-const [searchTerm, setSearchTerm] = useState('');
-const [sortOption, setSortOption] = useState('');
-const [layoutColumns,setLayoutColumns] = useState(true)
-//search & sort
+  const axiosCommon = useAxiosCommon()
+  const [searchText, setSearchText] = useState('');
+  const [sortOption, setSortOption] = useState('defaultSortValue');
+  const [layoutColumns, setLayoutColumns] = useState(true);
+  const [isLoading,setIsLoading] = useState(true)
+  
+  const [availableCamps,setAvailableCamps] = useState([])
+  const fetchCamp = async (sortOption) => {
+    const { data } = await axiosCommon.get(`/allavilableCamps`);
+    setAvailableCamps(data)
+    setIsLoading(false)
+  };
+  useEffect(()=>{
+   fetchCamp()
+  
+  },[])
+  //fetch Sort camp
+ 
+  
+  const handleSearch = async(e) => {
+    const searchValue = e.target.value
+    const { data } = await axiosCommon.get(`/allavilableCamps?searValue=${searchValue}`);
+    setAvailableCamps(data)
+  };
+  
+  const handleSort = async(e) => {
+    setIsLoading(true)
+    const sortValue = e.target.value || ""
+    setSortOption(sortValue);
+    const { data } = await axiosCommon.get(`/allavilableCamps?sortValue=${sortValue}`);
+    setAvailableCamps(data)
+    setIsLoading(false)
+  };
+  console.log(availableCamps)
 
-useEffect(async()=>{
-const {data} =await axiosCommon.get('/allavilableCamps');
-setAvailableCamps(data)
-},[])              
-
-///handleSearch
-const handleSearch =(e) =>{
-  console.log(e.target.value)
-}
-//handleSort
-const handleSort =(e)=>{
-console.log(e.target.value)
-}
-console.log(availableCamps)
+if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
       <div className="my-8">
@@ -41,7 +58,7 @@ console.log(availableCamps)
         handleSearch ={handleSearch}
         ></SortAndSerchBar>
       </div>
-       <div className={`grid grid-col-1  gap-10 mt-10 ${layoutColumns ? 'md:grid-cols-3':'md:grid-cols-2'}`}>
+       <div className={`grid grid-col-1  gap-10 mt-10 ${layoutColumns ? 'md:grid-cols-3':'md:grid-cols-2 [&>*]:w-11/12 gap-20'}`}>
         {
              availableCamps && availableCamps.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
         }

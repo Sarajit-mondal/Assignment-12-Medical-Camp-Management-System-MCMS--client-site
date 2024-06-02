@@ -11,7 +11,7 @@ function CampCard({popularCamp}) {
         ParticipantCount,
     } = popularCamp || {};
   return (
-    <div className="max-w-md mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden md:max-w-2xl opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100">
+    <div className=" mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden  opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100">
       <div>
         <div className="md:flex-shrink-0 ">
           <img className="h-60 w-full object-cover:" src={Image} alt={CampName} />
