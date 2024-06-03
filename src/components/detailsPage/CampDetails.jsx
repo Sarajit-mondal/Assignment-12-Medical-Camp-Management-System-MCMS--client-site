@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
+import ParticipantForm from '../model/ParticipantForm';
 
 const CampDetails = () => {
   const CampDetail = useLoaderData()
@@ -33,6 +34,7 @@ const CampDetails = () => {
         >
           Join Camp
         </button>
+        <ParticipantForm></ParticipantForm>
       </div>
     </div>
     </>
