@@ -3,6 +3,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
+import logo from '../../../assets/logo.png'
 import { useState } from 'react'
 
 import { Dropdown } from '@mui/base/Dropdown';
@@ -24,10 +25,10 @@ const Navbar = () => {
           <Link to='/'>
             <img
               // className='hidden md:block'
-              src='https://i.ibb.co/4ZXzmq5/logo.png'
+              src={logo}
               alt='logo'
-              width='100'
-              height='100'
+              width='60'
+              height='60'
             />
           </Link>
 

@@ -23,7 +23,7 @@ function PopularCamp() {
         </div>
         {/* button */}
          <div className="mt-16">
-          <Link>
+          <Link to='/allCamps'>
           <ButtonTwo buttonText={"See All Camps"}></ButtonTwo>
           </Link>
          </div>

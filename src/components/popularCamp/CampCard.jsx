@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function CampCard({popularCamp}) {
     const  {
+        _id,
         CampName,
         Image,
         CampFees,
@@ -11,7 +13,8 @@ function CampCard({popularCamp}) {
         ParticipantCount,
     } = popularCamp || {};
   return (
-    <div className=" mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden  opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100">
+   <Link to={`/campDetail/${_id}`}>
+     <div className=" mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden  opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100">
       <div>
         <div className="md:flex-shrink-0 ">
           <img className="h-60 w-full object-cover:" src={Image} alt={CampName} />
@@ -35,6 +38,7 @@ function CampCard({popularCamp}) {
         </div>
       </div>
     </div>
+   </Link>
   )
 }
 

@@ -30,8 +30,6 @@ function AvailableCamps() {
   
   const handleSearch = async(e) => {
     const searchValue = e.target.value
-    const { data } = await axiosCommon.get(`/allavilableCamps?searValue=${searchValue}`);
-    setAvailableCamps(data)
   };
   
   const handleSort = async(e) => {
@@ -44,7 +42,7 @@ function AvailableCamps() {
   };
   console.log(availableCamps)
 
-if(isLoading) return <LoadingSpinner></LoadingSpinner>
+// if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
       <div className="my-8">
@@ -58,11 +56,14 @@ if(isLoading) return <LoadingSpinner></LoadingSpinner>
         handleSearch ={handleSearch}
         ></SortAndSerchBar>
       </div>
-       <div className={`grid grid-col-1  gap-10 mt-10 ${layoutColumns ? 'md:grid-cols-3':'md:grid-cols-2 [&>*]:w-11/12 gap-20'}`}>
+      {
+        isLoading ? <LoadingSpinner /> :
+        <div className={`grid grid-col-1  gap-10 mt-10 ${layoutColumns ? 'md:grid-cols-3':'md:grid-cols-2 [&>*]:w-11/12 gap-20'}`}>
         {
              availableCamps && availableCamps.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
         }
        </div>
+      }
       </div>
     </div>
   )
