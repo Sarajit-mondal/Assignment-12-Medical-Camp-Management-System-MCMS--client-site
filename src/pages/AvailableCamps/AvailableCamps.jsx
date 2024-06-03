@@ -5,6 +5,7 @@ import CampCard from "../../components/popularCamp/CampCard"
 import SortAndSerchBar from "../../components/availableCamps/sortandSearch/SortAndSerchBar"
 import { useQuery } from "@tanstack/react-query"
 import LoadingSpinner from "../../components/Shared/LoadingSpinner"
+import { Helmet } from "react-helmet-async"
 
 
 
@@ -45,6 +46,7 @@ function AvailableCamps() {
 // if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
+      <Helmet title="allAvailableCamps"></Helmet>
       <div className="my-8">
       <h1 className="text-4xl text-center font-bold">Available Camps</h1>
       {/* search and sort bar */}
