@@ -14,7 +14,7 @@ function CampCard({popularCamp}) {
     } = popularCamp || {};
   return (
    <Link to={`/campDetail/${_id}`}>
-     <div className=" mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden  opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100">
+     <div className=" mx-auto bg-blue-50 rounded-xl shadow-md overflow-hidden  opacity-90 cursor-pointer hover:scale-105 ease-linear duration-300 hover:opacity-100 -h-96 text-nowrap">
       <div>
         <div className="md:flex-shrink-0 ">
           <img className="h-60 w-full object-cover:" src={Image} alt={CampName} />
@@ -29,7 +29,9 @@ function CampCard({popularCamp}) {
           </div>
           <div className="mt-2">
             <span className="text-gray-700 font-semibold">Healthcare Professional: </span>
-            <span className="text-gray-500">{HealthcareProfessional}</span>
+            <span className="text-gray-500">{
+            HealthcareProfessional.length < 16 ? HealthcareProfessional :
+            HealthcareProfessional.slice(0,15)+"..."}</span>
           </div>
           <div className="mt-2">
             <span className="text-gray-700 font-semibold">Participants: </span>

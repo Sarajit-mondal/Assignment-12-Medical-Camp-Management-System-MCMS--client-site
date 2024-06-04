@@ -17,7 +17,8 @@ const Navbar = () => {
   const { user,logOutFirebase } = useAuth()
   const [isOpen,setIsOpen] = useState(false)
 
-
+console.log(user?.displayName)
+console.log(user)
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
@@ -91,9 +92,9 @@ const Navbar = () => {
                 <div className='flex flex-col cursor-pointer'>
                   <Link
                     to='/'
-                    className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    className='block px-4 text-center font-bold py-3 hover:bg-neutral-100 transition '
                   >
-                   {user && user.dispalyName ? user.dispalyName :" user Name"}
+                   {user && user?.displayName ? user?.displayName :" user Name"}
                   </Link>
                   {/* dasbord */}
                   <Link
