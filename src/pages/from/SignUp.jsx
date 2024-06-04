@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
+import { useImageUpload } from "../../hooks/useImageUpload";
 
 const SignUp = () => {
   const navgate = useNavigate()
@@ -17,10 +18,25 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const {signInWithFacebook,signInWithGoogle,loading,setLoading} = useAuth()
+  const {signInWithFacebook,signInWithGoogle,loading,setLoading,updateUserProfile,createUser} = useAuth()
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit =async(data) => {
+    // console.log(data);
+    // console.log(data.files[0]);
+   const image = await useImageUpload(data.files[0])
+   
+  try {
+//create user
+await createUser(data.email,data.password)
+//update profile
+   await updateUserProfile(data.name,image)
+   toast.success('SignUp successful')
+   navgate('/')
+  } catch (error) {
+  toast.error(error.message)
+  }finally{
+    setLoading(false)
+  }
   };
 
   //handle social SignUp

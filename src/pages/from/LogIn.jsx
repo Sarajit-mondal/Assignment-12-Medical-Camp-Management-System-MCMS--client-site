@@ -17,10 +17,21 @@ const LogIn = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const {signInWithFacebook,signInWithGoogle,loading,setLoading} = useAuth()
+  const {signInWithFacebook,signInWithGoogle,loading,setLoading,signIn} = useAuth()
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     console.log(data);
+
+    try {
+      //login user
+      await signIn(data.email,data.password)
+      toast.success("login successful")
+      navgate('/')
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      setLoading(false)
+    }
   };
 
   //handle social login

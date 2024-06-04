@@ -15,7 +15,8 @@ import toast from 'react-hot-toast'
 
 const Navbar = () => {
   const { user,logOutFirebase } = useAuth()
-  const [isOpen,setIsOpen] = useState(true)
+  const [isOpen,setIsOpen] = useState(false)
+
 
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
@@ -86,7 +87,7 @@ const Navbar = () => {
               </div>
             </div>
             {isOpen && (
-              <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+              <div onClick={()=> setIsOpen(!isOpen)} className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
                 <div className='flex flex-col cursor-pointer'>
                   <Link
                     to='/'
