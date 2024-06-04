@@ -4,33 +4,14 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 
-const ParticipantForm = ({ campDetails, participantInfo }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const ParticipantForm = ({ campDetails, participantInfom,isOpen,closeModal,onSubmit }) => {
+  
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Register for Camp
-        </button>
-      </div>
+     
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -73,7 +54,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                         <label className="block text-sm font-medium text-gray-700">Camp Name</label>
                         <input
                           type="text"
-                        //   value={campDetails.name}
+                          value={campDetails.CampName}
                           readOnly
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
@@ -82,7 +63,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                         <label className="block text-sm font-medium text-gray-700">Camp Fees</label>
                         <input
                           type="text"
-                        //   value={campDetails.fees}
+                           value={campDetails.CampFees}
                           readOnly
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
@@ -91,7 +72,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                         <label className="block text-sm font-medium text-gray-700">Location</label>
                         <input
                           type="text"
-                        //   value={campDetails.location}
+                           value={campDetails.Location}
                           readOnly
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
@@ -100,7 +81,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                         <label className="block text-sm font-medium text-gray-700">Healthcare Name</label>
                         <input
                           type="text"
-                        //   value={campDetails.healthcareProfessional}
+                          value={campDetails.HealthcareProfessional}
                           readOnly
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
@@ -139,7 +120,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                       <div>
                         <label className="block text-sm font-medium text-gray-700">Phone Number</label>
                         <input
-                          type="text"
+                          type="number"
                           name="phoneNumber"
                           {...register('phoneNumber', { required: true })}
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -163,7 +144,7 @@ const ParticipantForm = ({ campDetails, participantInfo }) => {
                       <div>
                         <label className="block text-sm font-medium text-gray-700">Emergency Contact</label>
                         <input
-                          type="text"
+                          type="number"
                           name="emergencyContact"
                           {...register('emergencyContact', { required: true })}
                           className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

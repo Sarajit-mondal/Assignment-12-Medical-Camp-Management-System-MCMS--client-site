@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import ParticipantForm from '../model/ParticipantForm';
 
 const CampDetails = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const CampDetail = useLoaderData()
   console.log(CampDetail)
   const { CampName, 
@@ -15,6 +16,18 @@ const CampDetails = () => {
     ParticipantCount, 
     Description, 
     onJoin } = CampDetail || {}
+
+
+//handleSubmit
+const onSubmit =(data) =>{
+console.log(data)
+}   
+
+//close model
+const closeModal = () => {
+  setIsOpen(false);
+};
+
   return (
     <>
     <Helmet title={CampName +' Details'}></Helmet>
@@ -29,12 +42,15 @@ const CampDetails = () => {
         <p className="text-gray-700 mb-2"><span className="font-bold">Participants:</span> {ParticipantCount}</p>
         <p className="text-gray-700 mb-4"><span className="font-bold">Description:</span> {Description}</p>
         <button 
-          onClick={onJoin} 
+          onClick={()=> setIsOpen(true)} 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Join Camp
         </button>
-        <ParticipantForm></ParticipantForm>
+        <ParticipantForm isOpen={isOpen} closeModal={closeModal}
+        onSubmit={onSubmit}
+        campDetails={CampDetail}
+        ></ParticipantForm>
       </div>
     </div>
     </>
