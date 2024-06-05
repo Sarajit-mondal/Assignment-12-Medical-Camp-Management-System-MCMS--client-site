@@ -7,7 +7,7 @@ function OrganizarLinks() {
   return (
     <div>
      {/* Add A Camp */}
-     <Links LinkName=" Add A Camp" Icon={MdAddHomeWork} toLink='/dashboard'></Links>
+     <Links LinkName=" Add A Camp" Icon={MdAddHomeWork} toLink='addACamp'></Links>
      {/* Manage Camps */}
      <Links LinkName="Manage Camps" Icon={MdManageAccounts} toLink='manageCamps'></Links>
      {/* Manage Registered Camps */}

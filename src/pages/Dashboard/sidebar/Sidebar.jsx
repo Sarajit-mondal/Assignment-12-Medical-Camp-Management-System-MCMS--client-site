@@ -16,7 +16,7 @@ const Sidebar = () => {
   const { logOutFirebase } = useAuth()
   const [isActive, setActive] = useState(true)
   const navigate = useNavigate()
-  const organiger = true;
+  const organiger = false;
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
@@ -24,9 +24,9 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-       <div className='bg-gray-100 w-64  text-gray-800 flex justify-between md:hidden'>
+       <div className='bg-gray-100 w-full text-gray-800 flex justify-between md:hidden'>
         <div>
-          <div className='block cursor-pointer w-md p-4 font-bold'>
+          <div className='block cursor-pointer w-full p-4 font-bold'>
             <Link to='/'>
               <img
                 // className='hidden md:block'

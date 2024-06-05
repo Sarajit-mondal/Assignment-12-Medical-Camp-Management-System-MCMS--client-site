@@ -13,6 +13,9 @@ import ManageCamps from '../pages/Dashboard/OrganizerDashboard/ManageCamps'
 import RegisteredCamps from '../pages/Dashboard/OrganizerDashboard/RegisteredCamps'
 import Profile from '../components/profile/Profile'
 import Analytics from '../pages/Dashboard/userDashboard/Analytics'
+import UserRegisteredCamps from '../pages/Dashboard/userDashboard/UserRegisteredCamps'
+import PaymentHistory from '../pages/Dashboard/userDashboard/PaymentHistory'
+const organiger = true;
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -39,14 +42,14 @@ export const router = createBrowserRouter([
   //dashboard route
   {
     path:'dashboard',
-    element: <Dashboard>s</Dashboard>,
+    element: <Dashboard></Dashboard>,
     children:[
       {
-        path: '/dashboard',
+        index: true,
         element: <Analytics />
       },
       {
-        path: '/dashboard',
+        path: 'addACamp',
         element: <AddACamp />
       },
      
@@ -58,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: 'resisteredCamps',
         element: <RegisteredCamps />
+      },
+      {
+        path: 'registeredCamps',
+        element: <UserRegisteredCamps/>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory />
       },
       {
         path: 'profile',
