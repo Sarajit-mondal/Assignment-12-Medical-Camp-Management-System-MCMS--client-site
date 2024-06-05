@@ -13,11 +13,13 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
-import axios from 'axios'
+import useAxiosCommon from '../hooks/useAxiosCommon'
+
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 const facebookProvider = new FacebookAuthProvider()
+const axiosCommon = useAxiosCommon()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
@@ -54,14 +56,7 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email)
   }
 
-  const logOut = async () => {
-    setLoading(true)
-    await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-      withCredentials: true,
-    })
-    return signOut(auth)
-  }
-
+ //updateProfile
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -71,7 +66,7 @@ const AuthProvider = ({ children }) => {
   // Get token from server
   const getToken = async userInfo => {
    try {
-    const { data } = await axios.post(
+    const { data } = await axiosCommon.post(
       `${import.meta.env.VITE_API_URL}/jwt`,
      userInfo)
      localStorage.setItem('access-token',data.token)
@@ -80,17 +75,29 @@ const AuthProvider = ({ children }) => {
    }
     
   }
+  // set new user in database
+  const newUser = async(infoUser)=>{
+    try {
+      const {data} = axiosCommon.post('/users',infoUser)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
       const userInfo = {email: currentUser?.email}
+      const infouser = {
+        email: currentUser?.email,
+        role : "Participant"
+      }
       if (currentUser) {
         getToken(userInfo)
+        newUser(infouser)
       }else{
         localStorage.removeItem('access-token')
-        console.log("log out from user")
       }
       setLoading(false)
     })
@@ -108,7 +115,6 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     signInWithFacebook,
     resetPassword,
-    logOut,
     updateUserProfile,
     logOutFirebase
   }
