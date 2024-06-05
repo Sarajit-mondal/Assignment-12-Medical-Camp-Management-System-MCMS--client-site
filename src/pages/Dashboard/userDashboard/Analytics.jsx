@@ -1,9 +1,11 @@
 import React from 'react'
+import SalesLineChart from '../../../components/dashboard/UserDashboard/SalesLineChart'
 
 function Analytics() {
   return (
     <div>
-      AnlyTics
+      {/* AnlyTics */}
+      <SalesLineChart></SalesLineChart>
     </div>
   )
 }

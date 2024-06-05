@@ -69,21 +69,28 @@ const AuthProvider = ({ children }) => {
     })
   }
   // Get token from server
-  const getToken = async email => {
+  const getToken = async userInfo => {
+   try {
     const { data } = await axios.post(
       `${import.meta.env.VITE_API_URL}/jwt`,
-      { email },
-      { withCredentials: true }
-    )
-    return data
+     userInfo)
+     localStorage.setItem('access-token',data.token)
+   } catch (error) {
+    
+   }
+    
   }
 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
+      const userInfo = {email: currentUser?.email}
       if (currentUser) {
-        getToken(currentUser.email)
+        getToken(userInfo)
+      }else{
+        localStorage.removeItem('access-token')
+        console.log("log out from user")
       }
       setLoading(false)
     })

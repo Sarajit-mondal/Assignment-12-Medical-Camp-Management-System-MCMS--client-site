@@ -16,7 +16,7 @@ const Sidebar = () => {
   const { logOutFirebase } = useAuth()
   const [isActive, setActive] = useState(true)
   const navigate = useNavigate()
-  const organiger = false;
+  const organiger = true;
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)

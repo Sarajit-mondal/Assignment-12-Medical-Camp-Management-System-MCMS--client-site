@@ -14,11 +14,11 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 const Navbar = () => {
-  const { user,logOutFirebase } = useAuth()
-  const [isOpen,setIsOpen] = useState(false)
+  const { user, logOutFirebase } = useAuth()
+  const [isOpen, setIsOpen] = useState(false)
 
-console.log(user?.displayName)
-console.log(user)
+  console.log(user?.displayName)
+  console.log(user)
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
@@ -36,32 +36,32 @@ console.log(user)
 
           <div className='space-x-5 font-bold'>
             <NavLink to='/allCamps'>
-            Available Camps
+              Available Camps
             </NavLink>
             {/* //join with us Dropdown */}
-          {
-            !user &&   <Dropdown >
-            <MenuButton> <NavLink>Join US</NavLink></MenuButton>
-            <Menu className='z-20 mt-4 bg-white py-3'>
-              <MenuItem>
-                <Link
-                  to='/signup'
-                  className='px-4 pt-3 transition font-semibold'
-                >
-                  Sign Up
-                </Link>
-              </MenuItem>
-              <MenuItem className='mt-3'>
-                <Link
-                  to='/login'
-                  className='px-4 py-3 transition font-semibold'
-                >
-                  Login
-                </Link>
-              </MenuItem>
-            </Menu>
-          </Dropdown>
-          }
+            {
+              !user && <Dropdown >
+                <MenuButton> <NavLink>Join US</NavLink></MenuButton>
+                <Menu className='z-20 mt-4 bg-white py-3'>
+                  <MenuItem>
+                    <Link
+                      to='/signup'
+                      className='px-4 pt-3 transition font-semibold'
+                    >
+                      Sign Up
+                    </Link>
+                  </MenuItem>
+                  <MenuItem className='mt-3'>
+                    <Link
+                      to='/login'
+                      className='px-4 py-3 transition font-semibold'
+                    >
+                      Login
+                    </Link>
+                  </MenuItem>
+                </Menu>
+              </Dropdown>
+            }
 
           </div>
 
@@ -88,37 +88,38 @@ console.log(user)
               </div>
             </div>
             {isOpen && (
-              <div onClick={()=> setIsOpen(!isOpen)} className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+              <div onClick={() => setIsOpen(!isOpen)} className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
                 <div className='flex flex-col cursor-pointer'>
                   <Link
                     to='/'
                     className='block px-4 text-center font-bold py-3 hover:bg-neutral-100 transition '
                   >
-                   {user && user?.displayName ? user?.displayName :" user Name"}
+                    {user && user?.displayName ? user?.displayName : " user Name"}
                   </Link>
                   {/* dasbord */}
                   <Link
                     to='dashboard'
                     className=' px-4 py-3 hover:bg-neutral-100 transition font-semibold flex items-center gap-2 '
                   >
-                  <MdSpaceDashboard className='text-blue-500'/>  Dashboard
+                    <MdSpaceDashboard className='text-blue-500' />  Dashboard
                   </Link>
 
-                  {user ?(
+                  {user ? (
                     <>
                       <div
-                        onClick={async() => 
-                         await logOutFirebase()
-                         .then(res =>{
-                          toast.success("logOut successfull")
-                         })
-                         .catch(error =>{
-                          toast.error(error.message)
-                         })
+                        onClick={async() =>
+                          await logOutFirebase()
+                            .then(res => {
+                              toast.success("logOut successfull")
+                            })
+                            .catch(error => {
+                              toast.error(error.message)
+                            })
                         }
                         className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer flex items-center gap-2'
                       >
-                       <LuLogOut className='text-red-500'/> Logout
+                        <LuLogOut className='text-red-500' />
+                         Logout
                       </div>
                     </>
                   ) : (
