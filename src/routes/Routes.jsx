@@ -15,6 +15,9 @@ import Profile from '../components/profile/Profile'
 import Analytics from '../pages/Dashboard/userDashboard/Analytics'
 import UserRegisteredCamps from '../pages/Dashboard/userDashboard/UserRegisteredCamps'
 import PaymentHistory from '../pages/Dashboard/userDashboard/PaymentHistory'
+import PrivateRoute from './PrivateRoute'
+import OrganigerPrivateRoute from './OrganigerPrivateRoute'
+import ParticipantPrivateRoute from './ParticipantPrivateRoute'
 const organiger = true;
 export const router = createBrowserRouter([
   {
@@ -42,37 +45,40 @@ export const router = createBrowserRouter([
   //dashboard route
   {
     path:'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
       {
         index: true,
-        element: <Analytics />
+        element: <PrivateRoute><ParticipantPrivateRoute><Analytics /></ParticipantPrivateRoute></PrivateRoute>
       },
+      //organiger route
       {
-        path: 'addACamp',
-        element: <AddACamp />
+        // path: 'addACamp',
+        index: true,
+        element: <PrivateRoute><OrganigerPrivateRoute><AddACamp /></OrganigerPrivateRoute></PrivateRoute>
       },
      
    
       {
         path: 'manageCamps',
-        element: <ManageCamps />
+        element: <PrivateRoute><OrganigerPrivateRoute><ManageCamps /></OrganigerPrivateRoute></PrivateRoute>
       },
       {
         path: 'resisteredCamps',
-        element: <RegisteredCamps />
+        element: <PrivateRoute><OrganigerPrivateRoute><RegisteredCamps /></OrganigerPrivateRoute></PrivateRoute>
       },
+      //organiger camp
       {
         path: 'registeredCamps',
-        element: <UserRegisteredCamps/>
+        element: <PrivateRoute><ParticipantPrivateRoute><UserRegisteredCamps/></ParticipantPrivateRoute></PrivateRoute>
       },
       {
         path: 'paymentHistory',
-        element: <PaymentHistory />
+        element: <PrivateRoute><ParticipantPrivateRoute><PaymentHistory /></ParticipantPrivateRoute></PrivateRoute>
       },
       {
         path: 'profile',
-        element: <Profile ></Profile>
+        element: <PrivateRoute><Profile ></Profile></PrivateRoute>
       },
     ]
   },

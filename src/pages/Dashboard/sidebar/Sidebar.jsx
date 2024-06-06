@@ -11,12 +11,14 @@ import { Link } from 'react-router-dom'
 import UserLinks from '../DashboardLinks/UserLinks'
 import OrganizarLinks from '../DashboardLinks/OrganizarLinks'
 import toast from 'react-hot-toast'
+import useRole from '../../../hooks/useRole'
 
 const Sidebar = () => {
   const { logOutFirebase } = useAuth()
   const [isActive, setActive] = useState(true)
   const navigate = useNavigate()
-  const organiger = true;
+  const [role,isLoading] = useRole()
+  console.log(role)
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
@@ -76,10 +78,13 @@ const Sidebar = () => {
             <nav onClick={handleToggle}>
             
               {/* UserLinks */}
+               {
+                role ==="Organizer" &&<OrganizarLinks />
+                
+              } 
               {
-                organiger ? <OrganizarLinks />:  <UserLinks />
+                role ==="Participant" &&  <UserLinks />
               }
-             
             
 
             </nav>
