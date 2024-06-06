@@ -8,8 +8,8 @@ function PopularCamp() {
   const {data : allCamp =[]} = useAllCamps()
  
 
-  const popularCamps = allCamp.filter((camp,inx)=> inx < 6 )
-  console.log(popularCamps)
+  // const popularCamps = allCamp.filter((camp,inx)=> inx < 6 )
+  // console.log(popularCamps)
   return (
     <div>
       <Container>
@@ -18,7 +18,7 @@ function PopularCamp() {
         {/* //popularCard */}
         <div className="grid grid-col-1 md:grid-cols-3 gap-10 mt-10">
           {
-           popularCamps && popularCamps.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
+           allCamp && allCamp.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
           }
         </div>
         {/* button */}
