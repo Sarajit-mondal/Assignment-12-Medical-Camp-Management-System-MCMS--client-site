@@ -1,33 +1,79 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData, useLocation, useNavigate} from 'react-router-dom';
 import ParticipantForm from '../model/ParticipantForm';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2'
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const CampDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const CampDetail = useLoaderData()
-  console.log(CampDetail)
-  const { CampName, 
+  const {user} = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const axiosCommon = useAxiosCommon()
+  const {
+    _id, 
+    CampName, 
     Image, 
     CampFees, 
     DateTime, 
     Location, 
     HealthcareProfessional, 
     ParticipantCount, 
-    Description, 
-    onJoin } = CampDetail || {}
+    Description,} = CampDetail || {}
 
 
 //handleSubmit
-const onSubmit =(data) =>{
-console.log(data)
+const onSubmit =async(data) =>{
+const participantData ={
+  campId:_id, 
+  CampName, 
+  ParticipantName:user?.displayName,
+  ParticipantEmail:user?.email,
+  Image, 
+  CampFees, 
+  DateTime, 
+  Location, 
+  HealthcareProfessional, 
+  ...data
+}
+//post registered data
+try {
+ const {data} =await axiosCommon.post('/registerCamp',participantData)
+ console.log("Thiss data",data)
+} catch (error) {
+  
+}finally{
+  closeModal()
+}
+
 }   
 
 //close model
 const closeModal = () => {
   setIsOpen(false);
 };
-
+//handle Join
+const handleJoin =()=>{
+if(user){
+  setIsOpen(true)
+}else{
+  Swal.fire({
+    title: "Please Login Frist After Join Camp",
+    showDenyButton: true,
+    confirmButtonText: "yes",
+    confirmButtonColor:"blue"
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      navigate('/login',{state:location.pathname})
+    
+    } 
+  });
+}
+}
   return (
     <>
     <Helmet title={CampName +' Details'}></Helmet>
@@ -42,7 +88,7 @@ const closeModal = () => {
         <p className="text-gray-700 mb-2"><span className="font-bold">Participants:</span> {ParticipantCount}</p>
         <p className="text-gray-700 mb-4"><span className="font-bold">Description:</span> {Description}</p>
         <button 
-          onClick={()=> setIsOpen(true)} 
+          onClick={handleJoin} 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Join Camp
@@ -50,7 +96,7 @@ const closeModal = () => {
         <ParticipantForm isOpen={isOpen} closeModal={closeModal}
         onSubmit={onSubmit}
         campDetails={CampDetail}
-        ></ParticipantForm>
+         user={user}></ParticipantForm>
       </div>
     </div>
     </>

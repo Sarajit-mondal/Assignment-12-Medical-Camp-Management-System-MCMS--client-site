@@ -7,10 +7,13 @@ import { FaF } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const navgate = useNavigate()
+  const location = useLocation()
+  const from = location.state || '/'
+  console.log(from)
   const {
     register,
     handleSubmit,
@@ -26,7 +29,7 @@ const LogIn = () => {
       //login user
       await signIn(data.email,data.password)
       toast.success("login successful")
-      navgate('/')
+      navgate(from)
     } catch (error) {
       toast.error(error.message)
     }finally{
@@ -41,7 +44,7 @@ const LogIn = () => {
     await signInWithGoogle()
     .then(res => {
       toast.success("Google Login Successful")
-      navgate('/')
+      navgate(from)
     })
     .catch(error =>{
       toast.error(error.message)
@@ -51,7 +54,7 @@ const LogIn = () => {
       await signInWithFacebook()
       .then(res => {
         toast.success("Facebook Login Successful")
-        navgate('/')
+        navgate(from)
       })
       .catch(error =>{
         toast.error(error.message)
