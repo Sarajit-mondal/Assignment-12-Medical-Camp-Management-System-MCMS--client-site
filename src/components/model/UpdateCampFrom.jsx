@@ -1,11 +1,11 @@
-// src/components/ParticipantForm.js
+
 import React, { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 import { TbFidgetSpinner } from "react-icons/tb";
 
-const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading }) => {
+const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,loading }) => {
   
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -53,7 +53,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               <label className="block text-sm font-medium text-gray-700">
                 Camp Name
               </label>
-              <input
+              <input defaultValue={campDetails.CampName} 
                 type="text"
                 {...register("CampName", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -71,10 +71,10 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               </label>
               <input
                 type="file"
-                {...register("files", { required: true })}
+                {...register("files")}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
-              {errors.image && (
+              {errors.files && (
                 <span className="text-sm text-red-500">
                   This field is required
                 </span>
@@ -85,7 +85,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               <label className="block text-sm font-medium text-gray-700">
                 Camp Fees
               </label>
-              <input
+              <input defaultValue={campDetails.CampFees}
                 type="number"
                 {...register("CampFees", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -101,7 +101,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               <label className="block text-sm font-medium text-gray-700">
                 Date & Time
               </label>
-              <input
+              <input defaultValue={campDetails.DateTime}
                 type="datetime-local"
                 {...register("DateTime", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -117,7 +117,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               <label className="block text-sm font-medium text-gray-700">
                 Location
               </label>
-              <input
+              <input defaultValue={campDetails.Location}
                 type="text"
                 {...register("Location", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -131,9 +131,11 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Healthcare Professional Name
+                Healthcare Name
               </label>
-              <input
+              <input 
+              defaultValue={campDetails.HealthcareProfessional
+              }
                 type="text"
                 {...register("HealthcareProfessional", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -149,9 +151,8 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
               <label className="block text-sm font-medium text-gray-700">
                 Participant Count
               </label>
-              <input
+              <input defaultValue={campDetails.ParticipantCount}
                 type="number"
-                value={0}
                 {...register("ParticipantCount")}
              
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -163,6 +164,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
                 Description
               </label>
               <textarea
+               defaultValue={campDetails.Description}
                 {...register("Description", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               ></textarea>
@@ -176,6 +178,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
 
           <div className="mt-4 justify-center flex gap-12">
                         <button
+                         disabled={loading}
                           type="submit"
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                         >
@@ -185,6 +188,7 @@ const UpdateCampFrom = ({ campDetails,isOpen,closeModal,onSubmit,user,loading })
                           
                         </button>
                         <p onClick={closeModal}
+                         
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium cursor-pointer text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                         >
                           cancel

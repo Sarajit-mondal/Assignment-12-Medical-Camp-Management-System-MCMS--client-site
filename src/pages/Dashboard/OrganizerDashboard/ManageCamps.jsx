@@ -5,12 +5,17 @@ import ManageCampsTable from '../../../components/dashboard/OrganizerDashboard/A
 import { useQuery } from '@tanstack/react-query';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import UpdateCampFrom from '../../../components/model/UpdateCampFrom';
+import { useImageUpload } from '../../../hooks/useImageUpload';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 
 function ManageCamps() {
 const axiosCommon = useAxiosCommon()
 const [isOpen,setIsOpen] = useState(false)
 const [updatecamp,setUpdatecamp] = useState([])
+const [loading,setLoading] = useState(false)
+const axiosSecure = useAxiosSecure()
 const {data: camps =[],isLoading,refatch} = useQuery({
   queryKey: ['allcampData'],
   queryFn:async()=>{
@@ -19,8 +24,51 @@ const {data: camps =[],isLoading,refatch} = useQuery({
   }
 })
 
-const onSubmit =(data) =>{
-console.log(data)
+//update camp
+const onSubmit =async(data) =>{
+setLoading(true)
+console.log(data.files.length)
+const CampName = data.CampName
+ const DateTime = data.DateTime;
+ const Location = data.Location;
+ const HealthcareProfessional= data.HealthcareProfessional;
+ const ParticipantCount = parseInt(data.ParticipantCount);
+ const CampFees = parseFloat(data.CampFees)
+ const Description = data.Description;
+ let Image = ''
+
+ if(data.files.length < 1){
+ Image = updatecamp.Image
+ }else{
+ try {
+  Image = await useImageUpload(data.files[0])
+ } catch (error) {
+  
+ }
+ }
+
+ try {
+  const allAddData ={
+    Image,
+    CampName,
+    DateTime,
+    Location,
+    HealthcareProfessional,
+    ParticipantCount,
+    CampFees,
+    Description
+  }
+
+///update camp 
+const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
+
+ toast.success("Camp Update successful")
+ } catch (error) {
+  toast.error(error.message)
+ }finally{
+  setLoading(false)
+  closeModal(false)
+ }
 }
   const handleEdit = (camp) => {
     // Implement edit functionality
@@ -48,7 +96,7 @@ console.log(data)
     {/* update modal from */}
     <UpdateCampFrom isOpen={isOpen} closeModal={closeModal}
         onSubmit={onSubmit}
-        campDetails={updatecamp} loading={isLoading}></UpdateCampFrom>
+        campDetails={updatecamp} loading={loading}></UpdateCampFrom>
     </>
 
     
