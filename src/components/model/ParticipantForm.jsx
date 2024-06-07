@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
+import { TbFidgetSpinner } from "react-icons/tb";
 
-const ParticipantForm = ({ campDetails,isOpen,closeModal,onSubmit,user }) => {
+const ParticipantForm = ({ campDetails,isOpen,closeModal,onSubmit,user,loading }) => {
   
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -157,7 +158,10 @@ const ParticipantForm = ({ campDetails,isOpen,closeModal,onSubmit,user }) => {
                           type="submit"
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                         >
-                          Submit
+                            {
+              loading ? <TbFidgetSpinner className="animate-spin text-center mx-auto"/> : "Submit"
+             }
+                          
                         </button>
                         <p onClick={closeModal}
                           className="inline-flex justify-center px-4 py-2 text-sm font-medium cursor-pointer text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"

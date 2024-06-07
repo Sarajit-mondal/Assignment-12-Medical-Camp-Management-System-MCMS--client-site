@@ -14,6 +14,7 @@ const CampDetails = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const axiosCommon = useAxiosCommon()
+  const [loading,setLoading] = useState(false)
   const {
     _id, 
     CampName, 
@@ -28,6 +29,7 @@ const CampDetails = () => {
 
 //handleSubmit
 const onSubmit =async(data) =>{
+setLoading(true)
 const participantData ={
   campId:_id, 
   CampName, 
@@ -53,6 +55,7 @@ try {
   
 }finally{
   closeModal()
+  setLoading(false)
 }
 
 }   
@@ -102,7 +105,7 @@ if(user){
         <ParticipantForm isOpen={isOpen} closeModal={closeModal}
         onSubmit={onSubmit}
         campDetails={CampDetail}
-         user={user}></ParticipantForm>
+         user={user} loading={loading}></ParticipantForm>
       </div>
     </div>
     </>

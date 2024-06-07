@@ -12,7 +12,7 @@ import UserLinks from '../DashboardLinks/UserLinks'
 import OrganizarLinks from '../DashboardLinks/OrganizarLinks'
 import toast from 'react-hot-toast'
 import useRole from '../../../hooks/useRole'
-
+import logo from '../../../assets/logo.png'
 const Sidebar = () => {
   const { logOutFirebase } = useAuth()
   const [isActive, setActive] = useState(true)
@@ -32,9 +32,9 @@ const Sidebar = () => {
             <Link to='/'>
               <img
                 // className='hidden md:block'
-                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                src={logo}
                 alt='logo'
-                width='100'
+                width='200'
                 height='100'
               />
             </Link>
@@ -57,13 +57,13 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex md:px-4 md:py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+            <div className='w-full hidden md:flex md:px-4 md:py-2 shadow-lg rounded-lg justify-center items-center bg-white mx-auto'>
               <Link to='/'>
                 <img
                   className='hidden md:block'
-                  src='https://i.ibb.co/4ZXzmq5/logo.png'
+                  src={logo}
                   alt='logo'
-                  width='100'
+                  width='200'
                   height='100'
                 />
               </Link>
