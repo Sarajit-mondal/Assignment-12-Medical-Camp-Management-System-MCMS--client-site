@@ -16,7 +16,7 @@ const [isOpen,setIsOpen] = useState(false)
 const [updatecamp,setUpdatecamp] = useState([])
 const [loading,setLoading] = useState(false)
 const axiosSecure = useAxiosSecure()
-const {data: camps =[],isLoading,refatch} = useQuery({
+const {data: camps =[],isLoading,refetch} = useQuery({
   queryKey: ['allcampData'],
   queryFn:async()=>{
     const { data } = await axiosCommon.get(`/allcampData`);
@@ -36,7 +36,7 @@ const CampName = data.CampName
  const CampFees = parseFloat(data.CampFees)
  const Description = data.Description;
  let Image = ''
-
+ //condition image set
  if(data.files.length < 1){
  Image = updatecamp.Image
  }else{
@@ -48,6 +48,7 @@ const CampName = data.CampName
  }
 
  try {
+  //update data
   const allAddData ={
     Image,
     CampName,
@@ -59,9 +60,8 @@ const CampName = data.CampName
     Description
   }
 
-///update camp 
+///update camp fatch
 const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
-
  toast.success("Camp Update successful")
  } catch (error) {
   toast.error(error.message)
@@ -79,9 +79,17 @@ const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
     setIsOpen(false)
   }
 
-  const handleDelete = (id) => {
-   
+  //delete camp
+  const handleDelete = async(id) => {
     // Implement delete functionality
+    try {
+      //delete featch
+      const {data} =await axiosSecure.delete(`/campDelete/${id}`)
+      toast.success("Delete successful")
+      refetch()
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
   return (
     <>
