@@ -5,6 +5,7 @@ import ParticipantForm from '../model/ParticipantForm';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2'
 import useAxiosCommon from '../../hooks/useAxiosCommon';
+import toast from "react-hot-toast";
 
 const CampDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,6 +44,11 @@ const participantData ={
 try {
  const {data} =await axiosCommon.post('/registerCamp',participantData)
  console.log("Thiss data",data)
+ if(data.acknowledged){
+  toast.success("Regiter sucessfull")
+ }else{
+  toast.success("AllReady registed")
+ }
 } catch (error) {
   
 }finally{

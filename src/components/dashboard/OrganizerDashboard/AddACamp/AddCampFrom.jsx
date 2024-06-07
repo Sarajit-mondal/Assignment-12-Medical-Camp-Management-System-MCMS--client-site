@@ -1,16 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { TbFidgetSpinner } from "react-icons/tb";
 
-const AddCampForm = () => {
+const AddCampForm = ({onSubmit,loading}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
@@ -25,7 +24,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="text"
-                {...register("campName", { required: true })}
+                {...register("CampName", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.campName && (
@@ -41,7 +40,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="file"
-                {...register("image", { required: true })}
+                {...register("files", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.image && (
@@ -57,7 +56,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="number"
-                {...register("campFees", { required: true })}
+                {...register("CampFees", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.campFees && (
@@ -73,7 +72,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="datetime-local"
-                {...register("dateTime", { required: true })}
+                {...register("DateTime", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.dateTime && (
@@ -89,7 +88,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="text"
-                {...register("location", { required: true })}
+                {...register("Location", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.location && (
@@ -105,7 +104,7 @@ const AddCampForm = () => {
               </label>
               <input
                 type="text"
-                {...register("healthcareProfessionalName", { required: true })}
+                {...register("HealthcareProfessional", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
               {errors.healthcareProfessionalName && (
@@ -122,7 +121,8 @@ const AddCampForm = () => {
               <input
                 type="number"
                 value={0}
-                readOnly
+                {...register("ParticipantCount")}
+             
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
@@ -132,7 +132,7 @@ const AddCampForm = () => {
                 Description
               </label>
               <textarea
-                {...register("description", { required: true })}
+                {...register("Description", { required: true })}
                 className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               ></textarea>
               {errors.description && (
@@ -146,9 +146,13 @@ const AddCampForm = () => {
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled ={loading}
+              className="w-full px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 active:scale-95 ease-linear duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Add Camp
+               {
+              loading ? <TbFidgetSpinner className="animate-spin text-center mx-auto"/> : " Add Camp"
+             }
+             
             </button>
           </div>
         </form>

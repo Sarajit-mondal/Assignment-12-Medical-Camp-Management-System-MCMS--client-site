@@ -6,6 +6,7 @@ import SortAndSerchBar from "../../components/availableCamps/sortandSearch/SortA
 import { useQuery } from "@tanstack/react-query"
 import LoadingSpinner from "../../components/Shared/LoadingSpinner"
 import { Helmet } from "react-helmet-async"
+import useAuth from "../../hooks/useAuth"
 
 
 
@@ -15,10 +16,11 @@ function AvailableCamps() {
   const [sortOption, setSortOption] = useState('defaultSortValue');
   const [layoutColumns, setLayoutColumns] = useState(true);
   const [isLoading,setIsLoading] = useState(true)
+  const {user} = useAuth()
   
   const [availableCamps,setAvailableCamps] = useState([])
   const fetchCamp = async (sortOption) => {
-    const { data } = await axiosCommon.get(`/allavilableCamps`);
+    const { data } = await axiosCommon.get(`/allavilableCamps?userEmail=${user?.email}`);
     setAvailableCamps(data)
     setIsLoading(false)
   };
@@ -37,7 +39,7 @@ function AvailableCamps() {
     setIsLoading(true)
     const sortValue = e.target.value || ""
     setSortOption(sortValue);
-    const { data } = await axiosCommon.get(`/allavilableCamps?sortValue=${sortValue}`);
+    const { data } = await axiosCommon.get(`/allavilableCamps?sortValue=${sortValue}&userEmail=${user?.email}`);
     setAvailableCamps(data)
     setIsLoading(false)
   };
