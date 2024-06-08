@@ -39,7 +39,7 @@ const Profile = () => {
    
   }
 
-  //close modle
+  // close modle
   const closeModal =() =>{
     setIsOpen(false)
   }
@@ -96,7 +96,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      //update profile modle
+      {/* //update profile modle */}
       <UpdateProfile isOpen={isOpen} closeModal={closeModal}
         onSubmit={onSubmit}
         user={user} loading={isloading}></UpdateProfile>

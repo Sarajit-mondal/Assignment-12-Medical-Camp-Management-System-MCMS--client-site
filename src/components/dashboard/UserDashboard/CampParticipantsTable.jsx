@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PaymentModel from '../../model/PaymentModel';
+import useAuth from '../../../hooks/useAuth';
 
 const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
+  const [isOpen,setIsOpen] = useState(false)
+  const [isloading,setIsLoading]=useState(false)
+  const [camp,setCamp] = useState([])
+  const {user} = useAuth()
+
+  const onSubmit = () =>{
+    console.log("paymnet doing")
+  }
+  //close model
+  const closeModal = () =>{
+    setIsOpen(false)
+  }
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -44,7 +58,9 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                 {
-                  participant?.PaymentStatus === "Unpaid" ? <button className='btn active:scale-95 ease-in-out duration-200'>Pay</button> : "Paid"
+                  participant?.PaymentStatus === "Unpaid" ? <button onClick={()=> {setIsOpen(true)
+                    setCamp(participant)
+                  }} className='btn active:scale-95 ease-in-out duration-200'>Pay</button> : "Paid"
                 }
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
@@ -73,6 +89,10 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
           }
         </tbody>
       </table>
+
+      <PaymentModel isOpen={isOpen} closeModal={closeModal}
+        onSubmit={onSubmit}
+        user={user} loading={isloading} paymentCamp ={camp}></PaymentModel>
     </div>
   );
 };
