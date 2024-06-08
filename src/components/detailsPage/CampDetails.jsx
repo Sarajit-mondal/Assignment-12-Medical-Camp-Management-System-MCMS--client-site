@@ -19,7 +19,7 @@ const CampDetails = () => {
     _id, 
     CampName, 
     Image, 
-    CampFees, 
+    CampFees,
     DateTime, 
     Location, 
     HealthcareProfessional, 
@@ -39,6 +39,8 @@ const participantData ={
   CampFees, 
   DateTime, 
   Location, 
+  PaymentStatus: "Unpaid",
+  ConfirmationStatus:"Panding",
   HealthcareProfessional, 
   ...data
 }

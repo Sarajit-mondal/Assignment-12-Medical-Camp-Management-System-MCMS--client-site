@@ -1,18 +1,12 @@
 import React from 'react'
 import CampParticipantsTable from '../../../components/dashboard/UserDashboard/CampParticipantsTable';
 import Heading from '../../../components/Shared/Heading';
+import useMyjoinCamp from '../../../hooks/useMyjoinCamp';
 
 
 function UserRegisteredCamps() {
-    const participant = {
-        id: 1,
-        campName: 'Summer Health Camp',
-        campFees: '$200',
-        name: 'John Doe',
-        paymentStatus: 'Paid',
-        paymentConfirmationStatus: 'Confirmed'
-      };
-    
+   const {data : participant = [],isLoading,refetch} = useMyjoinCamp()
+    console.log(participant)
       const handleFeedback = (id) => {
         console.log(`Provide feedback for participant with id: ${id}`);
         // Implement feedback functionality
@@ -27,7 +21,7 @@ function UserRegisteredCamps() {
      <Heading  title="Registered Camps" subtitle="This is your all Registered Camps" center="center"></Heading>
 
       {/* user registeredCamps */}
-      <CampParticipantsTable participant={participant}
+      <CampParticipantsTable participants={participant}
       onFeedback={handleFeedback} onCancel={handleCancel}></CampParticipantsTable>
     </div>
   )
