@@ -2,10 +2,47 @@
 import { Helmet } from 'react-helmet-async'
 import useAuth from '../../hooks/useAuth'
 import LoadingSpinner from '../Shared/LoadingSpinner'
+import useRole from '../../hooks/useRole'
+import UpdateProfile from '../model/UpdateProfile'
+import { useState } from 'react'
+import { useImageUpload } from '../../hooks/useImageUpload'
+import toast from 'react-hot-toast'
 
 const Profile = () => {
-  const { user,loading,logOutFirebase } = useAuth()
+  const { user,loading,updateUserProfile } = useAuth()
+  const [role] = useRole()
+  const [isOpen,setIsOpen] = useState(false)
+  const [isloading,setIsLoading]=useState(false)
 
+  //update submit
+  const onSubmit = async(data) =>{
+    setIsLoading(true)
+    const name = data.name;
+    let image = ''
+    if(data.files.length < 1){
+     image = user?.photoURL;
+    }else{
+        image = await useImageUpload(data.files[0])
+    }
+
+    try {
+      await updateUserProfile(name,image)
+      toast.success("Profile Update Success")
+    } catch (error) {
+      toast.error(error.message)
+    }finally{
+      closeModal(false)
+      setIsLoading(false)
+    }
+    
+  
+   
+  }
+
+  //close modle
+  const closeModal =() =>{
+    setIsOpen(false)
+  }
 
   if(loading) return <LoadingSpinner></LoadingSpinner>
   return (
@@ -29,7 +66,7 @@ const Profile = () => {
           </a>
 
           <p className='p-2 px-4 text-xs text-white bg-blue-500 rounded-full'>
-           {"User"}
+           {role.toUpperCase()}
           </p>
           <p className='mt-2 text-xl font-medium text-gray-800 '>
             User Id: {user?.uid}
@@ -48,7 +85,7 @@ const Profile = () => {
               </p>
 
               <div>
-                <button className='bg-blue-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#1f4ece] block mb-1'>
+                <button onClick={()=> setIsOpen(true)} className='bg-blue-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#1f4ece] block mb-1'>
                   Update Profile
                 </button>
                 <button className='bg-blue-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#2173be]'>
@@ -59,6 +96,10 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      //update profile modle
+      <UpdateProfile isOpen={isOpen} closeModal={closeModal}
+        onSubmit={onSubmit}
+        user={user} loading={isloading}></UpdateProfile>
     </div>
   )
 }

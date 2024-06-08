@@ -8,8 +8,6 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import { Dropdown } from '@mui/base/Dropdown';
 import { MenuButton } from '@mui/base/MenuButton';
-import { Menu } from '@mui/base/Menu';
-import { MenuItem } from '@mui/base/MenuItem';
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -41,25 +39,7 @@ const Navbar = () => {
             {/* //join with us Dropdown */}
             {
               !user && <Dropdown >
-                <MenuButton> <NavLink>Join US</NavLink></MenuButton>
-                <Menu className='z-20 mt-4 bg-white py-3'>
-                  <MenuItem>
-                    <Link
-                      to='/signup'
-                      className='px-4 pt-3 transition font-semibold'
-                    >
-                      Sign Up
-                    </Link>
-                  </MenuItem>
-                  <MenuItem className='mt-3'>
-                    <Link
-                      to='/login'
-                      className='px-4 py-3 transition font-semibold'
-                    >
-                      Login
-                    </Link>
-                  </MenuItem>
-                </Menu>
+                <MenuButton> <NavLink to='/login'>Join US</NavLink></MenuButton>
               </Dropdown>
             }
 
