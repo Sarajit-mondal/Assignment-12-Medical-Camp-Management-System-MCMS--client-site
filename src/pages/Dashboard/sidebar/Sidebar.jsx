@@ -13,6 +13,7 @@ import OrganizarLinks from '../DashboardLinks/OrganizarLinks'
 import toast from 'react-hot-toast'
 import useRole from '../../../hooks/useRole'
 import logo from '../../../assets/logo.png'
+import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 const Sidebar = () => {
   const { logOutFirebase } = useAuth()
   const [isActive, setActive] = useState(true)
@@ -23,6 +24,7 @@ const Sidebar = () => {
   const handleToggle = () => {
     setActive(!isActive)
   }
+
   return (
     <>
       {/* Small Screen Navbar */}
@@ -77,14 +79,14 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav onClick={handleToggle}>
             
-              {/* UserLinks */}
+              {
+                role ==="Participant" &&  <UserLinks />
+              }
+               {/* UserLinks */}
                {
                 role ==="Organizer" &&<OrganizarLinks />
                 
               } 
-              {
-                role ==="Participant" &&  <UserLinks />
-              }
             
 
             </nav>

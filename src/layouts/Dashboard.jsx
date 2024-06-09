@@ -1,8 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../pages/Dashboard/sidebar/Sidebar'
+import useRole from '../hooks/useRole'
+import LoadingSpinner from '../components/Shared/LoadingSpinner'
 
 function Dashboard() {
+  const [role,isLoading] = useRole()
+  
+  if(isLoading){
+    return  <LoadingSpinner />
+  }
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       <div>

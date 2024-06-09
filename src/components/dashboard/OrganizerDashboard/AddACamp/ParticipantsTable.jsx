@@ -39,13 +39,13 @@ const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus}) => 
                 {participant.CampName}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                $777
+               ${participant.CampFees}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {participant.PaymentStatus}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <button onClick={() =>handlePaymentsStatus(participant._id)} disabled={participant.PaymentStatus === "Unpaid"}>{participant.ConfirmationStatus}</button>
+                <button onClick={() =>handlePaymentsStatus(participant._id)} disabled={participant.PaymentStatus === "Unpaid" || participant.ConfirmationStatus === "Confirmed"}>{participant.ConfirmationStatus}</button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                 <button disabled ={participant.PaymentStatus === "Paid"}

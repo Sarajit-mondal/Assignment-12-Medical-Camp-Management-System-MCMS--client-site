@@ -26,7 +26,6 @@ const CampDetails = () => {
     ParticipantCount, 
     Description,} = CampDetail || {}
 
-
 //handleSubmit
 const onSubmit =async(data) =>{
 setLoading(true)
@@ -40,7 +39,7 @@ const participantData ={
   DateTime, 
   Location, 
   PaymentStatus: "Unpaid",
-  ConfirmationStatus:"Panding",
+  ConfirmationStatus:"Pending",
   HealthcareProfessional, 
   ...data
 }
