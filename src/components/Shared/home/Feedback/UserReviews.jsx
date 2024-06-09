@@ -13,22 +13,26 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import useAxiosCommon from '../../../../hooks/useAxiosCommon';
 
 
 function UserReviews() {
-  const [allReview,setAllReview] = useState()
+  const axiosCommon = useAxiosCommon()
+  const [allReview,setAllReview] = useState([])
+
 
 useEffect(()=>{
-  axios.get(`${import.meta.env.VITE_API_URL}/allReview/sort`)
-  .then(res => {
-    setAllReview(res.data)
-  })
-
+ getAllFeedback()
 },[])
-// console.log(allReview)
+const getAllFeedback =async()=>{
+  const {data} =await axiosCommon.get(`/allReview/sort`)
+  setAllReview(data)
+}
+
+console.log(allReview)
   const isSmallDevice = window.innerWidth < 700
   return (
-    <div data-aos="fade-right" className="flex justify-between gap-16">
+    <div data-aos="fade-right" className="flex justify-between gap-16 my-16">
       {/* left side  */}
       <div className="space-y-5 min-w-48">
         <h2 className="text-3xl font-bold">User Reviews</h2>
@@ -64,12 +68,12 @@ useEffect(()=>{
           <div className=''>
            <div className="flex text-xl ">
           {
-            [...Array(review.rating)].map(rating => <FaStar className='text-[#fc6f03]' />)
+            [...Array(parseInt(review.ratting))].map(rating => <FaStar className='text-[#fc6f03]' />)
             
           }
           {
-            [...Array(5 - review.rating +1)].map((reating,inx) => {
-              if(inx + review.rating < 5){
+            [...Array(5 -parseInt(review.ratting) +1)].map((reating,inx) => {
+              if(inx +parseInt(review.ratting) < 5){
                return <FaStar />
               }
             })
@@ -77,11 +81,11 @@ useEffect(()=>{
 
         
           </div>
-          <p className='text-justify mt-2'>{review.comment} </p>
+          <p className='text-justify mt-2'>{review.feedback} </p>
            </div>
            <div >
-             <h3 className='text-lg font-bold'>{review.username}</h3>
-             <p>{review.todayDate}</p>
+             <h3 className='text-lg font-bold'>{review.Name}</h3>
+          
            </div>
           </div>
          </SwiperSlide>)
