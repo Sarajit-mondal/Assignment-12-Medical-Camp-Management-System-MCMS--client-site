@@ -19,22 +19,22 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch }) =
   }
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y text-center divide-gray-200">
         <thead className="bg-blue-100">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+            <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
               Camp Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+            <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
               Camp Fees
             </th>
-            <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+            <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
               Participant Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+            <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
               Payment Status
             </th>
-            <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+            <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
               Payment Confirmation Status
             </th>
             <th className="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
@@ -53,7 +53,7 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch }) =
                 {participant.CampName}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                {participant.CampFees}
+              $ {participant.CampFees}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                 {participant.ParticipantName}

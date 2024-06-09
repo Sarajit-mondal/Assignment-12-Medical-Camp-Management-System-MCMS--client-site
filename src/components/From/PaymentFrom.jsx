@@ -88,10 +88,12 @@ const PaymentFrom = ({closeModal,campInfo,refetch}) => {
       const paymentInfo = {
         ...campInfo,
         paymentCampId: campInfo._id,
+        paymentStatus: "Paid",
         transactionId: paymentIntent.id,
         data:new Date()
       }
       delete paymentInfo._id
+      delete paymentInfo.PaymentStatus
       console.log(paymentInfo)
      
       try {
