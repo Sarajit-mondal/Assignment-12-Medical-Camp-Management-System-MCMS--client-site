@@ -50,8 +50,10 @@ try {
  console.log("Thiss data",data)
  if(data.acknowledged){
   toast.success("Regiter sucessfull")
+  navigate(-1)
  }else{
   toast.success("AllReady registed")
+  navigate(-1)
  }
 } catch (error) {
   

@@ -4,6 +4,8 @@ import Heading from '../../../components/Shared/Heading';
 import useMyjoinCamp from '../../../hooks/useMyjoinCamp';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import Swal from 'sweetalert2'
+
 
 
 function UserRegisteredCamps() {
@@ -19,12 +21,25 @@ function UserRegisteredCamps() {
         console.log(`Cancel participation for id: ${id}`);
         // Implement cancel functionality
         try {
-         await axiosSecure.delete(`/deleteRegisteredCamps/${id}`)
-         toast.success("Delete Successfull")
-         refetch()
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You want to delete",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+              //delete featch
+              await axiosSecure.delete(`/deleteRegisteredCamps/${id}`)
+              toast.success("Delete Successfull")
+              refetch()
+            }
+          });
+       
         } catch (error) {
           toast.error(error.message)
-          
         }
       };
   return (
