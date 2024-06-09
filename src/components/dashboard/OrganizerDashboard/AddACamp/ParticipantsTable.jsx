@@ -50,7 +50,7 @@ const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus}) => 
               <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                 <button disabled ={participant.PaymentStatus === "Paid"}
                   onClick={() => handleCancel(participant._id)}
-                  className={`${participant.PaymentStatus === "Unpaid" && "text-red-600 hover:text-red-800 active:scale-95 easein-out duration-200"}`}
+                  className={`${participant.PaymentStatus === "Unpaid" && participant.ConfirmationStatus === "Pending" && "text-red-600 hover:text-red-800 active:scale-95 easein-out duration-200"}`}
                 >
                   <RiDeleteBin6Line className="text-lg " />
                 </button>

@@ -43,7 +43,25 @@ const handleCancel = (id) => {
 
 //handle payment status
 const handlePaymentsStatus = (id) =>{
-console.log(id)
+try {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You want to panding to Confirmed",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes"
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+    const {data} =await axiosSecure.patch(`/StatusConfirmed/${id}`)
+    refetch()
+    toast.success("Update Confirmed successful")                               
+    }
+  });
+} catch (error) {
+  
+}
 }
   return (
     <div>
