@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PaymentModel from '../../model/PaymentModel';
 import useAuth from '../../../hooks/useAuth';
 
-const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
+const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch }) => {
   const [isOpen,setIsOpen] = useState(false)
   const [isloading,setIsLoading]=useState(false)
   const [camp,setCamp] = useState([])
@@ -13,7 +13,9 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
   }
   //close model
   const closeModal = () =>{
+    refetch()
     setIsOpen(false)
+   
   }
   return (
     <div className="overflow-x-auto">
@@ -91,8 +93,7 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel }) => {
       </table>
 
       <PaymentModel isOpen={isOpen} closeModal={closeModal}
-        onSubmit={onSubmit}
-        user={user} loading={isloading} paymentCamp ={camp}></PaymentModel>
+       paymentCamp ={camp} refetch={refetch}></PaymentModel>
     </div>
   );
 };

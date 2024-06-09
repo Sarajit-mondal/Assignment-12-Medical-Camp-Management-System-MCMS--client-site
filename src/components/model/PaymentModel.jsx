@@ -9,7 +9,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentFrom from '../From/PaymentFrom';
 
 
-const PaymentModel = ({ paymentCamp,user,isOpen,closeModal,onSubmit,loading }) => {
+const PaymentModel = ({ paymentCamp,isOpen,closeModal,refetch}) => {
   const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
   
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -49,35 +49,19 @@ const PaymentModel = ({ paymentCamp,user,isOpen,closeModal,onSubmit,loading }) =
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
+                    <div className='my-4'>
                    {
                     paymentCamp.CampName
                    } (Payment)
+                   </div>
                   </Dialog.Title>
                   <div className="mt-2">
                  {/* stripe elements */}
                    <Elements stripe={stripePromise}>
                     {/* Form */}
-                    <PaymentFrom />
+                    <PaymentFrom  closeModal={closeModal} campInfo={ paymentCamp} refetch={refetch}/>
                    </Elements>
-                   {/* button */}
-            <div className="mt-4 justify-center flex gap-12">
-                        <button
-                         disabled={loading}
-                          type="submit"
-                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                        >
-                            {
-              loading ? <TbFidgetSpinner className="animate-spin text-center mx-auto"/> : "Submit"
-             }
-                          
-                        </button>
-                        <p onClick={closeModal}
-                         
-                          className="inline-flex justify-center px-4 py-2 text-sm font-medium cursor-pointer text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                        >
-                          cancel
-                        </p>
-                      </div>
+                  
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

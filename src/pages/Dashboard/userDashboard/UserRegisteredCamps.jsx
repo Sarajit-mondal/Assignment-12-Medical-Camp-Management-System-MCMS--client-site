@@ -22,7 +22,7 @@ function UserRegisteredCamps() {
 
       {/* user registeredCamps */}
       <CampParticipantsTable participants={participant}
-      onFeedback={handleFeedback} onCancel={handleCancel}></CampParticipantsTable>
+      onFeedback={handleFeedback} onCancel={handleCancel} refetch={refetch} ></CampParticipantsTable>
     </div>
   )
 }
