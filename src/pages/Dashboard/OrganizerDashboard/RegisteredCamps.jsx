@@ -1,5 +1,6 @@
 import Heading from "../../../components/Shared/Heading"
 import ParticipantsTable from "../../../components/dashboard/OrganizerDashboard/AddACamp/ParticipantsTable"
+import { Helmet } from 'react-helmet-async'
 import {
   useQuery,
 } from '@tanstack/react-query'
@@ -65,6 +66,7 @@ try {
 }
   return (
     <div>
+      <Helmet title="All Registered Camps"></Helmet>
      <Heading title="All Participants" subtitle="All Cams Registered Users" center="center"></Heading>
 
      {/* /// registered user table */}

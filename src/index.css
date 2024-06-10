@@ -10,5 +10,10 @@
     th,td{
         @apply border border-gray-500 
     }
-   
+    
 }
+
+a.active{
+    @apply text-blue-500
+}
+

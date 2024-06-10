@@ -1,6 +1,6 @@
 
 assignment_category_00017
-careCamp Organizer live link : https://carecamp-organizer.web.app
+careCamp Organizer live link : https://carecamp-organizer.web.apps
 
 ## Role Organizer 
 	email    : sarajit456@gmail.com

@@ -4,7 +4,7 @@ import Heading from '../../../components/Shared/Heading';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-
+import { Helmet } from 'react-helmet-async'
 function PaymentHistory() {
 const axiosSecure = useAxiosSecure()
 const {user,loading} = useAuth()
@@ -25,6 +25,7 @@ const participant = {
       };
   return (
     <div className='space-y-4'>
+      <Helmet title='Payment History'></Helmet>
      <Heading  title="Payment History" subtitle="This is your all payment History" center="center"></Heading>
       {/* payment history */}
       <PaymentTable paymentHistores={paymentHistores}></PaymentTable>

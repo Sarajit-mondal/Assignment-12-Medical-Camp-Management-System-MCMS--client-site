@@ -8,7 +8,7 @@ import UpdateCampFrom from '../../../components/model/UpdateCampFrom';
 import { useImageUpload } from '../../../hooks/useImageUpload';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
-
+import { Helmet } from 'react-helmet-async'
 
 function ManageCamps() {
 const axiosCommon = useAxiosCommon()
@@ -93,6 +93,7 @@ const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
   };
   return (
     <>
+    <Helmet title='Manage Camps'></Helmet>
     <div className='my-6'>
     <Heading title="Manage Camps" subtitle="Manage every camps update and delete" center="center"></Heading>
     </div>

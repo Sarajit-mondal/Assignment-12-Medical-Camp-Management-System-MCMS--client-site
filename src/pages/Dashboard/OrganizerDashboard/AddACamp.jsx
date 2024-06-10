@@ -4,7 +4,7 @@ import AddCampForm from '../../../components/dashboard/OrganizerDashboard/AddACa
 import { useImageUpload } from '../../../hooks/useImageUpload';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
-
+import { Helmet } from 'react-helmet-async'
 
 
 function AddACamp() {
@@ -21,6 +21,7 @@ function AddACamp() {
  const CampFees = parseFloat(data.CampFees)
  const Description = data.Description;
  const Image = await useImageUpload(data.files[0])
+
 try {
   //create image link
  
@@ -50,6 +51,9 @@ const allAddData ={
   };
   return (
     <div>
+      <Helmet title='Add A Camp'>
+        
+      </Helmet>
       <Heading title="Add A Camp" subtitle="Add new Medical Camp" center="center"></Heading>
 
       {/* // add Camp From  */}

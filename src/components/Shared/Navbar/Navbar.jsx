@@ -6,10 +6,9 @@ import avatarImg from '../../../assets/images/placeholder.jpg'
 import logo from '../../../assets/logo.png'
 import { MdSpaceDashboard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
-import { Dropdown } from '@mui/base/Dropdown';
-import { MenuButton } from '@mui/base/MenuButton';
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import AllNavLink from './AllNavLink'
 
 const Navbar = () => {
   const { user, logOutFirebase } = useAuth()
@@ -31,17 +30,9 @@ const Navbar = () => {
               height='70'
             />
           </Link>
-
-          <div className='space-x-5 font-bold'>
-            <NavLink to='/allCamps'>
-              Available Camps
-            </NavLink>
-            {/* //join with us Dropdown */}
-            {
-              !user && <Dropdown >
-                <MenuButton> <NavLink to='/login'>Join US</NavLink></MenuButton>
-              </Dropdown>
-            }
+         {/* all navLinks */}
+          <div className='md:flex hidden'>
+           <AllNavLink></AllNavLink>
 
           </div>
 
@@ -76,6 +67,12 @@ const Navbar = () => {
                   >
                     {user && user?.displayName ? user?.displayName : " user Name"}
                   </Link>
+
+                  {/* small device AllNavLink */}
+                  <div className='md:hidden'>
+                  <AllNavLink></AllNavLink>
+                  </div>
+                  
                   {/* dasbord */}
                   <Link
                     to='dashboard'

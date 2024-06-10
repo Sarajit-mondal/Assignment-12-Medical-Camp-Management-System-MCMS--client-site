@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import UserFeedback from '../../../components/model/UserFeedback';
 import useAuth from '../../../hooks/useAuth';
-
+import { Helmet } from 'react-helmet-async'
 
 
 function UserRegisteredCamps() {
@@ -67,6 +67,7 @@ function UserRegisteredCamps() {
       };
   return (
     <>
+    <Helmet title='User Registered Camps'></Helmet>
     <div className='space-y-4'>
      <Heading  title="Registered Camps" subtitle="This is your all Registered Camps" center="center"></Heading>
 

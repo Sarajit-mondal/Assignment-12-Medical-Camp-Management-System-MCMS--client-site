@@ -35,7 +35,7 @@ console.log(allReview)
     <div data-aos="fade-right" className="flex justify-between gap-16 my-16">
       {/* left side  */}
       <div className="space-y-5 min-w-48">
-        <h2 className="text-3xl font-bold">User Reviews</h2>
+        <h2 className="text-3xl font-bold">Pasent Reviews</h2>
          <span className="flex items-end"><h3 className="text-[#fc6f03] text-4xl font-bold">4.8</h3> <p>out of 5 Stars</p></span>
          <div className="flex text-xl text-[#fc6f03] ">
          <FaStar></FaStar>

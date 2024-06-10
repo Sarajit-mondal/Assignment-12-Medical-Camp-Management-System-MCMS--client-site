@@ -18,6 +18,8 @@ import PaymentHistory from '../pages/Dashboard/userDashboard/PaymentHistory'
 import PrivateRoute from './PrivateRoute'
 import OrganigerPrivateRoute from './OrganigerPrivateRoute'
 import ParticipantPrivateRoute from './ParticipantPrivateRoute'
+import AboutUs from '../components/Shared/home/ContactAndAbout/AboutUs'
+import ContactUs from '../components/Shared/home/ContactAndAbout/ContactUs'
 const organiger = true;
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ export const router = createBrowserRouter([
     {
       path: '/allCamps',
       element: <AvailableCamps></AvailableCamps>
+    },
+    {
+      path: '/about',
+      element: <AboutUs></AboutUs>
+    },
+    {
+      path: '/contact',
+      element: <ContactUs></ContactUs>
     },
     {
       path: '/campDetail/:id',

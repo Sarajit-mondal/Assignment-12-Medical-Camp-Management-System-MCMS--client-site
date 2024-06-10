@@ -50,7 +50,7 @@ const Profile = () => {
       <Helmet>
         <title>Profile</title>
       </Helmet>
-      <div className='bg-white shadow-lg rounded-2xl w-3/5'>
+      <div className='bg-white shadow-lg rounded-2xl w-full md:w-3/5'>
         <img
           alt='profile'
           src='https://img.freepik.com/premium-photo/close-up-computer-keyboard_1048944-5570471.jpg?w=826'
