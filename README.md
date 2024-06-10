@@ -1,10 +1,10 @@
 
 assignment_category_00017
-careCamp Organizer live link : hotel-booking-c0e42.web.app
+careCamp Organizer live link : https://carecamp-organizer.web.app
 
 ## Role Organizer 
-	email : sarajit756@gmail.com
-        password : 111111
+	email    : sarajit456@gmail.com
+    password : 111111
 
 
 ## CareCamp Organizer
