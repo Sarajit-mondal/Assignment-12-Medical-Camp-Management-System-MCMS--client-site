@@ -16,7 +16,7 @@ function PopularCamp() {
         <h1 className="text-4xl text-center font-bold">Our Popular Cmaps</h1>
 
         {/* //popularCard */}
-        <div className="grid grid-col-1 md:grid-cols-3 gap-10 mt-10">
+        <div className="grid grid-col-1 md:grid-cols-3 gap-10 md:gap-6 mt-10">
           {
            allCamp && allCamp.map(camp => <CampCard key={camp._id} popularCamp={camp}></CampCard>)
           }

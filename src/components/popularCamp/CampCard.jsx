@@ -28,10 +28,10 @@ function CampCard({popularCamp}) {
             <span className="text-gray-500">{CampFees}</span>
           </div>
           <div className="mt-2">
-            <span className="text-gray-700 font-semibold">Healthcare Professional: </span>
+            <span className="text-gray-700 font-semibold">Healthcare : </span>
             <span className="text-gray-500">{
             HealthcareProfessional.length < 16 ? HealthcareProfessional :
-            HealthcareProfessional.slice(0,15)+"..."}</span>
+            HealthcareProfessional.slice(0,40)+"..."}</span>
           </div>
           <div className="mt-2">
             <span className="text-gray-700 font-semibold">Participants: </span>

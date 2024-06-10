@@ -4,7 +4,7 @@ const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus}) => 
  
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-scroll md:overflow-auto mt-6">
       <table className="min-w-full divide-y divide-gray-200 text-center">
         <thead className="bg-blue-100 ">
           <tr className="">

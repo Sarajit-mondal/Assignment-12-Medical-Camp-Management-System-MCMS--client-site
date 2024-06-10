@@ -37,7 +37,7 @@ function Slider() {
   <h1 class="text-2xl  md:text-4xl font-bold mb-2">Join Our Medical Camp</h1>
   <p class="text-lg  mb-4">Your Health Matters - Quality Care for Everyone</p>
   <p class="text-md mb-6">Date: June 15-20, 2024 | Location: Downtown Community Center</p>
-  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase hover:bg-blue-600 transition-all">
+  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all">
     Donate Now
   </button>
 </div>
@@ -54,7 +54,7 @@ function Slider() {
   <h1 class="text-2xl  md:text-4xl font-bold mb-2">Join Our Medical Camp</h1>
   <p class="text-lg  mb-4">Your Health Matters - Quality Care for Everyone</p>
   <p class="text-md mb-6">Date: June 15-20, 2024 | Location: Downtown Community Center</p>
-  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase hover:bg-blue-600 transition-all">
+  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all">
     Donate Now
   </button>
 </div>
@@ -71,7 +71,7 @@ function Slider() {
   <h1 class="text-2xl  md:text-4xl font-bold mb-2">Join Our Medical Camp</h1>
   <p class="text-lg  mb-4">Your Health Matters - Quality Care for Everyone</p>
   <p class="text-md mb-6">Date: June 15-20, 2024 | Location: Downtown Community Center</p>
-  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase hover:bg-blue-600 transition-all">
+  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all">
     Donate Now
   </button>
 </div>
@@ -88,7 +88,7 @@ function Slider() {
   <h1 class="text-2xl  md:text-4xl font-bold mb-2">Join Our Medical Camp</h1>
   <p class="text-lg  mb-4">Your Health Matters - Quality Care for Everyone</p>
   <p class="text-md mb-6">Date: June 15-20, 2024 | Location: Downtown Community Center</p>
-  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase hover:bg-blue-600 transition-all">
+  <button class="bg-blue-500 border-2 text-white font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all">
     Donate Now
   </button>
 </div>
