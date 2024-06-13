@@ -1,6 +1,7 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Pagination from "../../../Pagination/Pagination";
 
-const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus}) => {
+const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage}) => {
  
 
   return (
@@ -58,6 +59,15 @@ const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus}) => 
             </tr>)
           }
         </tbody>
+           {/* tablefooter */}
+           <tfoot>
+                <tr >
+                  <td className="w-full p-2" colSpan="6">
+                      {/* pagination */}
+                <Pagination totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                  </td>
+                </tr>
+              </tfoot>
       </table>
     </div>
   );

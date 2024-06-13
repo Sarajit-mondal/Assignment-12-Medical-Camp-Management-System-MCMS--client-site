@@ -1,4 +1,6 @@
-const ManageCampsTable = ({ camps, handleEdit, handleDelete }) => {
+import Pagination from "../../../Pagination/Pagination";
+
+const ManageCampsTable = ({ camps, handleEdit, handleDelete,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage }) => {
   console.log(camps);
 
   return (
@@ -56,6 +58,15 @@ const ManageCampsTable = ({ camps, handleEdit, handleDelete }) => {
                           </tr>
                       ))}
               </tbody>
+              {/* tablefooter */}
+              <tfoot>
+                <tr >
+                  <td className="w-full p-2" colSpan="5">
+                      {/* pagination */}
+                <Pagination totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                  </td>
+                </tr>
+              </tfoot>
           </table>
       </div>
   );

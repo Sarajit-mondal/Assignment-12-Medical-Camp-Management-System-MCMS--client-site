@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import UpdateCampFrom from '../../../components/model/UpdateCampFrom';
 import { useImageUpload } from '../../../hooks/useImageUpload';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async'
 
@@ -15,15 +14,28 @@ const axiosCommon = useAxiosCommon()
 const [isOpen,setIsOpen] = useState(false)
 const [updatecamp,setUpdatecamp] = useState([])
 const [loading,setLoading] = useState(false)
-const axiosSecure = useAxiosSecure()
+// pagination 
+const [totalData,setTotalData] = useState(1)
+const [showPerPage,setShowPerPage] = useState(5)
+const [currentPage,setCurrentPage] = useState(1)
+const total = async()=>{
+  const { data } = await axiosCommon.get(`/allcampCount`);
+  console.log("count data",data.count)
+    setTotalData(data.count)
+}
+total()
+
+// pagination 
+
 const {data: camps =[],isLoading,refetch} = useQuery({
   queryKey: ['allcampData'],
-  queryFn:async()=>{
-    const { data } = await axiosCommon.get(`/allcampData`);
-    return data
-  }
+  queryFn:async()=>await getAllCampData()
 })
-
+const getAllCampData =async()=>{
+  const { data } = await axiosCommon.get(`/allavilableCamps?limit=${showPerPage}&page=${currentPage}`);
+  return data
+}
+refetch()
 //update camp
 const onSubmit =async(data) =>{
 setLoading(true)
@@ -99,7 +111,7 @@ const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
     </div>
 
     {/* // manageCampsTable */}
-    <ManageCampsTable camps={camps} handleDelete={handleDelete} handleEdit={handleEdit}></ManageCampsTable>
+    <ManageCampsTable  camps={camps} handleDelete={handleDelete} handleEdit={handleEdit}  totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></ManageCampsTable>
 
 
     {/* update modal from */}

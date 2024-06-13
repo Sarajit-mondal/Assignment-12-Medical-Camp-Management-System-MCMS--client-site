@@ -1,0 +1,4 @@
+.allbutton button{
+    @apply  border-2 border-blue-300 size-6 rounded-full flex items-center justify-center active:scale-95 ease-linear duration-200 text-[14px]
+
+}

@@ -13,37 +13,42 @@ import useAuth from "../../hooks/useAuth"
 function AvailableCamps() {
   const axiosCommon = useAxiosCommon()
   const [searchText, setSearchText] = useState('');
-  const [sortOption, setSortOption] = useState('defaultSortValue');
+  const [sortOption, setSortOption] = useState('');
+  const [searchResult,setSearchResult] = useState([])
   const [layoutColumns, setLayoutColumns] = useState(true);
   const [isLoading,setIsLoading] = useState(true)
   const {user} = useAuth()
   
   const [availableCamps,setAvailableCamps] = useState([])
-  const fetchCamp = async (sortOption) => {
-    const { data } = await axiosCommon.get(`/allavilableCamps?userEmail=${user?.email}`);
+  const fetchCamp = async (sortValue = '',searchValue = '') => {
+    const { data } = await axiosCommon.get(`/allavilableCamps?sortValue=${sortValue}&searchValue=${searchValue}&userEmail=${user?.email}`);
     setAvailableCamps(data)
+    if(searchValue !== ''){
+      setSearchResult(data)
+    }else{
+      setSearchResult([0])
+    }
     setIsLoading(false)
   };
   useEffect(()=>{
-   fetchCamp()
-  
+  if(searchText === '' && sortOption === ''){
+    fetchCamp()
+  }
   },[])
-  //fetch Sort camp
  
-  
+ //handlesearchs
   const handleSearch = async(e) => {
     const searchValue = e.target.value
+     fetchCamp('',searchValue)
   };
-  
+   //fetch Sort camp
   const handleSort = async(e) => {
     setIsLoading(true)
     const sortValue = e.target.value || ""
     setSortOption(sortValue);
-    const { data } = await axiosCommon.get(`/allavilableCamps?sortValue=${sortValue}&userEmail=${user?.email}`);
-    setAvailableCamps(data)
-    setIsLoading(false)
+    fetchCamp(sortValue)
   };
-  console.log(availableCamps)
+  // console.log(availableCamps)
 
 // if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (
@@ -58,6 +63,7 @@ function AvailableCamps() {
         layoutColumns = {layoutColumns}
         handleSort={handleSort}
         handleSearch ={handleSearch}
+        searchResult ={searchResult}
         ></SortAndSerchBar>
       </div>
       {

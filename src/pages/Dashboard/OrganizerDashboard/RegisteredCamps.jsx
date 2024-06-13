@@ -7,9 +7,24 @@ import {
 import useAxiosSecure from "../../../hooks/useAxiosSecure"
 import Swal from 'sweetalert2'
 import toast from "react-hot-toast"
+import { useState } from "react"
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 function RegisteredCamps() {
-const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure()
+  const axiosCommon = useAxiosCommon()
+// pagination 
+const [totalData,setTotalData] = useState(1)
+const [showPerPage,setShowPerPage] = useState(5)
+const [currentPage,setCurrentPage] = useState(1)
+const total = async()=>{
+  const { data } = await axiosCommon.get(`/allcampCount`);
+  console.log("count data",data.count)
+    setTotalData(data.registeredCount)
+}
+total()
+
+// pagination 
  const {data : participants =[],isLoading,refetch} =useQuery({
   queryKey : ['allRgisterUser'],
   queryFn : async() =>{
@@ -70,7 +85,7 @@ try {
      <Heading title="All Participants" subtitle="All Cams Registered Users" center="center"></Heading>
 
      {/* /// registered user table */}
-     <ParticipantsTable handleCancel={handleCancel} participants={participants} handlePaymentsStatus={handlePaymentsStatus}></ParticipantsTable>
+     <ParticipantsTable handleCancel={handleCancel} participants={participants} handlePaymentsStatus={handlePaymentsStatus} totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></ParticipantsTable>
     </div>
   )
 }

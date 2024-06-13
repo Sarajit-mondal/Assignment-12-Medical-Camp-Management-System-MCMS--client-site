@@ -13,7 +13,9 @@ function PopularCamp() {
   return (
     <div>
       <Container>
-        <h1 className="text-4xl text-center font-bold">Our Popular Cmaps</h1>
+        {
+          allCamp.length > 1 && <h1 className="text-4xl text-center font-bold">Our Popular Camps</h1>
+        }
 
         {/* //popularCard */}
         <div className="grid grid-col-1 md:grid-cols-3 gap-10 md:gap-6 mt-10">
@@ -23,9 +25,11 @@ function PopularCamp() {
         </div>
         {/* button */}
          <div className="mt-16">
-          <Link to='/allCamps'>
-          <ButtonTwo buttonText={"See All Camps"}></ButtonTwo>
-          </Link>
+          {
+            allCamp.length > 1 && <Link to='/allCamps'>
+            <ButtonTwo buttonText={"See All Camps"}></ButtonTwo>
+            </Link>
+          }
          </div>
       </Container>
     </div>
