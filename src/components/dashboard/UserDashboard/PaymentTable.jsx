@@ -1,6 +1,7 @@
 import React from 'react';
+import Pagination from '../../Pagination/Pagination';
 
-const PaymentTable = ({ paymentHistores }) => {
+const PaymentTable = ({ paymentHistores,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage }) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y text-center divide-gray-200">
@@ -39,6 +40,15 @@ const PaymentTable = ({ paymentHistores }) => {
           </tr>)
          }
         </tbody>
+           {/* tablefooter */}
+           <tfoot>
+                <tr >
+                <td className="w-full p-2" colSpan="4">
+                      {/* pagination */}
+                <Pagination totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                  </td>
+                </tr>
+              </tfoot>
       </table>
     </div>
   );

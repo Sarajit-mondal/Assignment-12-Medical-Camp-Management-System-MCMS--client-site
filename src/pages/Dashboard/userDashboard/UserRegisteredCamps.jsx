@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CampParticipantsTable from '../../../components/dashboard/UserDashboard/CampParticipantsTable';
 import Heading from '../../../components/Shared/Heading';
 import useMyjoinCamp from '../../../hooks/useMyjoinCamp';
@@ -8,14 +8,40 @@ import Swal from 'sweetalert2'
 import UserFeedback from '../../../components/model/UserFeedback';
 import useAuth from '../../../hooks/useAuth';
 import { Helmet } from 'react-helmet-async'
+import useAxiosCommon from '../../../hooks/useAxiosCommon';
+import { useQuery } from '@tanstack/react-query';
 
 
 function UserRegisteredCamps() {
   const axiosSecure = useAxiosSecure()
-  const {user} = useAuth()
+  const axiosCommon = useAxiosCommon()
+  const {user,loading} = useAuth()
   const [isOpen,setIsOpen] = useState(false)
-   const {data : participant = [],isLoading,refetch} = useMyjoinCamp()
-    console.log(participant)
+  // pagination 
+const [totalData,setTotalData] = useState(1)
+const [showPerPage,setShowPerPage] = useState(5)
+const [currentPage,setCurrentPage] = useState(1)
+const total = async()=>{
+  const { data } = await axiosCommon.get(`/allcampCount`);
+  console.log("count data",data.registeredCount)
+    setTotalData(data.registeredCount)
+    
+}
+total()
+
+// pagination 
+const {data : participant = [],refetch} = useQuery({
+    queryKey : ['allCamp'],
+    enabled: !loading && !!user?.email,
+    queryFn : async() => getAllCampData()
+  })
+  const getAllCampData =async()=>{
+    const { data } = await axiosSecure.get(`/myCamps/${user?.email}?limit=${showPerPage}&page=${currentPage}`);
+    return data
+  }
+  useEffect(()=>{
+    refetch()
+  },[currentPage,totalData,showPerPage])
     //handle feedback
     const onSubmit = async(data) =>{
      const userFeedback = {
@@ -73,7 +99,7 @@ function UserRegisteredCamps() {
 
       {/* user registeredCamps */}
       <CampParticipantsTable participants={participant}
-      onFeedback={handleFeedback} onCancel={handleCancel} refetch={refetch} ></CampParticipantsTable>
+      onFeedback={handleFeedback} onCancel={handleCancel} refetch={refetch} totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></CampParticipantsTable>
     </div>
     {/* mondal */}
     <UserFeedback  isOpen={isOpen} closeModal={closeModal} onSubmit={onSubmit}></UserFeedback>

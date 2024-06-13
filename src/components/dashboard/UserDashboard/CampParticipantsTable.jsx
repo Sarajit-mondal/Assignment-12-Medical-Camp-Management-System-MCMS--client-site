@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PaymentModel from '../../model/PaymentModel';
 import useAuth from '../../../hooks/useAuth';
+import Pagination from '../../Pagination/Pagination';
 
-const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch }) => {
+const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage }) => {
   const [isOpen,setIsOpen] = useState(false)
   const [isloading,setIsLoading]=useState(false)
   const [camp,setCamp] = useState([])
@@ -90,6 +91,15 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch }) =
             </tr>)
           }
         </tbody>
+           {/* tablefooter */}
+           <tfoot>
+                <tr >
+                  <td className="w-full p-2" colSpan="7">
+                      {/* pagination */}
+                <Pagination totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                  </td>
+                </tr>
+              </tfoot>
       </table>
 
       <PaymentModel isOpen={isOpen} closeModal={closeModal}
