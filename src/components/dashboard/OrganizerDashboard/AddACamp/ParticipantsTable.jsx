@@ -1,13 +1,23 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Pagination from "../../../Pagination/Pagination";
+import TableSortAndSearch from "../../../availableCamps/sortandSearch/TableSortAndSearch";
 
-const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage}) => {
+const ParticipantsTable = ({participants,handleCancel,handlePaymentsStatus,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage,handleSearch,handleSort}) => {
  
 
   return (
     <div className="overflow-x-scroll md:overflow-auto mt-6">
       <table className="min-w-full divide-y divide-gray-200 text-center">
         <thead className="bg-blue-100 ">
+          {/* sort and search files */}
+          <tr className="border-transparent">
+                <td colSpan="4"></td>
+                
+                 <td colSpan="2" className="px-2">
+                 <TableSortAndSearch handleSearch ={handleSearch} handleSort ={handleSort} ></TableSortAndSearch>
+                 </td>
+                </tr>
+                {/* sort and search files */}
           <tr className="">
             <th className="px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
               Participants Name

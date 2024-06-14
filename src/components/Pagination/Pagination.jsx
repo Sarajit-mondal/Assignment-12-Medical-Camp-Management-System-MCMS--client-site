@@ -3,12 +3,8 @@ import { useState } from 'react';
 import './Pagination.css'
 import { FaArrowRight,FaArrowLeft } from "react-icons/fa";
 function Pagination({totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage}) {
-  console.log("data",totalData)
   const page = Math.ceil(totalData / showPerPage)
   const perPage = [...Array(page).keys()]
-  
-  
-  console.log(currentPage)
   return (
     <div className='allbutton'>
        <div className='flex w-full justify-between px-5'>

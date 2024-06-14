@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../../../components/Shared/Heading'
 import ManageCampsTable from '../../../components/dashboard/OrganizerDashboard/AddACamp/ManageCampsTable'
 
@@ -14,32 +14,53 @@ const axiosCommon = useAxiosCommon()
 const [isOpen,setIsOpen] = useState(false)
 const [updatecamp,setUpdatecamp] = useState([])
 const [loading,setLoading] = useState(false)
+//search and sort
+const [searchText, setSearchText] = useState('');
+const [sortOption, setSortOption] = useState('');
 // pagination 
 const [totalData,setTotalData] = useState(1)
 const [showPerPage,setShowPerPage] = useState(5)
 const [currentPage,setCurrentPage] = useState(1)
 const total = async()=>{
   const { data } = await axiosCommon.get(`/allcampCount`);
-  console.log("count data",data.count)
     setTotalData(data.count)
 }
 total()
 
 // pagination 
-
-const {data: camps =[],isLoading,refetch} = useQuery({
-  queryKey: ['allcampData'],
-  queryFn:async()=>await getAllCampData()
-})
-const getAllCampData =async()=>{
-  const { data } = await axiosCommon.get(`/allavilableCamps?limit=${showPerPage}&page=${currentPage}`);
-  return data
+const [camps,setCamps] = useState([])
+// const {data: camps =[],isLoading,refetch} = useQuery({
+//   queryKey: ['allcampData'],
+//   queryFn:async()=>await getAllCampData()
+// })
+const getAllCampData =async(sortValue='',searchValue='')=>{
+  const { data } = await axiosCommon.get(`/allavilableCamps?limit=${showPerPage}&page=${currentPage}&sortValue=${sortValue}&searchValue=${searchValue}`);
+  setCamps(data)
 }
-refetch()
+useEffect(()=>{
+  if(searchText === '' && sortOption === ''){
+    getAllCampData()
+  }
+  
+},[currentPage,totalData,showPerPage])
 //update camp
+
+ //handlesearchs
+ const handleSearch = async(e) => {
+  const searchValue = e.target.value
+  getAllCampData("",searchValue)
+  setSearchText(searchValue)
+};
+ //fetch Sort camp
+const handleSort = async(e) => {
+  const sortValue = e.target.value || ""
+
+  getAllCampData(sortValue)
+  setSortOption(sortValue)
+};
+console.log(camps)
 const onSubmit =async(data) =>{
 setLoading(true)
-console.log(data.files.length)
 const CampName = data.CampName
  const DateTime = data.DateTime;
  const Location = data.Location;
@@ -111,7 +132,7 @@ const {data} = axiosSecure.put(`/updateCamp/${updatecamp._id}`,allAddData)
     </div>
 
     {/* // manageCampsTable */}
-    <ManageCampsTable  camps={camps} handleDelete={handleDelete} handleEdit={handleEdit}  totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></ManageCampsTable>
+    <ManageCampsTable  camps={camps} handleDelete={handleDelete} handleEdit={handleEdit}  totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage} handleSearch ={handleSearch} handleSort ={handleSort}></ManageCampsTable>
 
 
     {/* update modal from */}

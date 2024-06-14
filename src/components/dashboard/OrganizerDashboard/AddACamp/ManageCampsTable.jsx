@@ -1,12 +1,21 @@
 import Pagination from "../../../Pagination/Pagination";
+import TableSortAndSearch from "../../../availableCamps/sortandSearch/TableSortAndSearch";
 
-const ManageCampsTable = ({ camps, handleEdit, handleDelete,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage }) => {
-  console.log(camps);
+const ManageCampsTable = ({ camps, handleEdit, handleDelete,totalData,showPerPage,setShowPerPage,currentPage,setCurrentPage,handleSearch,handleSort }) => {
 
   return (
       <div className="overflow-x-scroll md:overflow-auto">
           <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
+                {/* sort and search files */}
+                <tr className="border-transparent">
+                <td colSpan="3"></td>
+                
+                 <td colSpan="2" className="px-2">
+                 <TableSortAndSearch handleSearch ={handleSearch} handleSort ={handleSort} ></TableSortAndSearch>
+                 </td>
+                </tr>
+                {/* sort and search files */}
                   <tr className="text-left font-bold">
                       <th className="md:px-6 md:py-3 text-xs md:text-sm text-gray-600 uppercase tracking-wider">
                           Camp Name

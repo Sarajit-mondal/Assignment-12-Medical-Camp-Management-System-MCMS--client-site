@@ -7,12 +7,15 @@ import {
 import useAxiosSecure from "../../../hooks/useAxiosSecure"
 import Swal from 'sweetalert2'
 import toast from "react-hot-toast"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 function RegisteredCamps() {
   const axiosSecure = useAxiosSecure()
   const axiosCommon = useAxiosCommon()
+  //search and sort
+const [searchText, setSearchText] = useState('');
+const [sortOption, setSortOption] = useState('');
 // pagination 
 const [totalData,setTotalData] = useState(1)
 const [showPerPage,setShowPerPage] = useState(5)
@@ -25,13 +28,38 @@ const total = async()=>{
 total()
 
 // pagination 
- const {data : participants =[],isLoading,refetch} =useQuery({
-  queryKey : ['allRgisterUser'],
-  queryFn : async() =>{
-    const {data} =await axiosSecure('/allRegisterUser')
-    return data
+const [participants,setParticipants] = useState([])
+//  const {data : participants =[],isLoading,refetch} =useQuery({
+//   queryKey : ['allRgisterUser'],
+//   queryFn : async() => getAllCampData()
+// })
+const getAllCampData =async(sortValue ='',searchValue='')=>{
+  const { data } = await axiosSecure.get(`/allRegisterUser?limit=${showPerPage}&page=${currentPage}&sortValue=${sortValue}&searchValue=${searchValue}`);
+  setParticipants(data)
+}
+useEffect(()=>{
+  if(searchText === '' && sortOption === ''){
+    getAllCampData()
   }
-})
+  
+},[currentPage,totalData,showPerPage])
+//update camp
+
+ //handlesearchs
+ const handleSearch = async(e) => {
+  const searchValue = e.target.value
+  getAllCampData("",searchValue)
+  setSearchText(searchValue)
+};
+ //fetch Sort camp
+const handleSort = async(e) => {
+  const sortValue = e.target.value || ""
+
+  getAllCampData(sortValue)
+  setSortOption(sortValue)
+};
+
+
 const handleCancel = (id) => {
   // Implement cancel functionality
   try {
@@ -85,7 +113,7 @@ try {
      <Heading title="All Participants" subtitle="All Cams Registered Users" center="center"></Heading>
 
      {/* /// registered user table */}
-     <ParticipantsTable handleCancel={handleCancel} participants={participants} handlePaymentsStatus={handlePaymentsStatus} totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></ParticipantsTable>
+     <ParticipantsTable handleSearch={handleSearch} handleSort={handleSort} handleCancel={handleCancel} participants={participants} handlePaymentsStatus={handlePaymentsStatus} totalData={totalData}showPerPage={showPerPage}setShowPerPage={setShowPerPage}setCurrentPage={setCurrentPage} currentPage={currentPage}></ParticipantsTable>
     </div>
   )
 }

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 
 const SortAndSerchBar = ({layoutColumns,setLayoutColumns,handleSearch,handleSort,searchResult}) => {
- console.log("aaaa",searchResult)
 
   return (
     <div className="p-6 bg-blue-100 my-10">
