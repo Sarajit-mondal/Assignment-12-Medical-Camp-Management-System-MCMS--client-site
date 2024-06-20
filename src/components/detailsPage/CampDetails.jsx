@@ -46,7 +46,7 @@ const participantData ={
 //post registered data
 try {
  const {data} =await axiosCommon.post('/registerCamp',participantData)
- console.log("Thiss data",data)
+ //("Thiss data",data)
  if(data.acknowledged){
   toast.success("Regiter sucessfull")
   navigate(-1)

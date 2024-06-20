@@ -22,7 +22,7 @@ const [showPerPage,setShowPerPage] = useState(5)
 const [currentPage,setCurrentPage] = useState(1)
 const total = async()=>{
   const { data } = await axiosCommon.get(`/allcampCount`);
-  console.log("count data",data.count)
+  //("count data",data.count)
     setTotalData(data.registeredCount)
 }
 total()

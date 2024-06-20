@@ -27,7 +27,7 @@ const PaymentFrom = ({closeModal,campInfo,refetch}) => {
   // get clientSecret
   const getClientSecret = async(price) =>{
   const {data} =await axiosSecure.post('/create-payment-stripe',price)
-  console.log(data)
+  //(data)
   setClientSecret(data.clientSecret)
   }
 
@@ -59,10 +59,10 @@ const PaymentFrom = ({closeModal,campInfo,refetch}) => {
     if (error) {
       setCardError(error)
       setProcessing(false)
-      console.log('[error]', error);
+      //('[error]', error);
       return
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      //('[PaymentMethod]', paymentMethod);
       setCardError('')
     }
     //confirm payment
@@ -76,14 +76,14 @@ const PaymentFrom = ({closeModal,campInfo,refetch}) => {
       }
     })
     if(confirmError){
-      console.log(confirmError)
+      //(confirmError)
       setCardError(confirmError)
       setProcessing(false)
       return
     }
 
     if(paymentIntent.status === 'succeeded'){
-      console.log(paymentIntent)
+      //(paymentIntent)
       //1. Create payment info object
       const paymentInfo = {
         ...campInfo,
@@ -94,7 +94,7 @@ const PaymentFrom = ({closeModal,campInfo,refetch}) => {
       }
       delete paymentInfo._id
       delete paymentInfo.PaymentStatus
-      console.log(paymentInfo)
+      //(paymentInfo)
      
       try {
         //2. save payment info in booking collection (db)

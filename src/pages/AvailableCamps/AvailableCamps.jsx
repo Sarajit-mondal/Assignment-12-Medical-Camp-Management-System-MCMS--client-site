@@ -48,7 +48,7 @@ function AvailableCamps() {
     setSortOption(sortValue);
     fetchCamp(sortValue)
   };
-  // console.log(availableCamps)
+  // //(availableCamps)
 
 // if(isLoading) return <LoadingSpinner></LoadingSpinner>
   return (

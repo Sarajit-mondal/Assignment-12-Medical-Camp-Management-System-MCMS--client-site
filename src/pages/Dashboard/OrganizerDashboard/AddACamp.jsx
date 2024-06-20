@@ -42,7 +42,7 @@ const allAddData ={
   toast.success("new Camp Added")
 } catch (error) {
   toast.error(error.message)
-  console.log(error)
+  //(error)
 }finally{
   setLoading(false)
 }

@@ -1,12 +1,26 @@
 import React from 'react'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
 
 function Donate() {
+  const axiosSecure = useAxiosSecure()
+  const handleDonate =async()=>{
+   try {
+    const {data} =await axiosSecure.post('/create_payment',{amount:1000,currency:"USD"})
+    //(data)
+    const redirectUrl = data.paymentUrl;
+    if(redirectUrl){
+      window.location.replace(redirectUrl)
+    }
+   } catch (error) {
+    
+   }
+  }
   return (
     <div>
        <div className='w-full md:w-52 text-center space-y-4 mt-16 p-4'>
           {/* donate button */}
           <h2 className='text-3xl font-bold'>Donate Us</h2>
-          <button class="bg-blue-500 border-2 text-white border-orange-500 font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all animate-bounce">
+          <button onClick={handleDonate} class="bg-blue-500 border-2 text-white border-orange-500 font-bold py-2 px-4 rounded-full uppercase   hover:bg-blue-600 transition-all animate-bounce">
           Donate Now
           </button>
           {/* all donated person */}

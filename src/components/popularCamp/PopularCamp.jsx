@@ -9,7 +9,7 @@ function PopularCamp() {
  
 
   // const popularCamps = allCamp.filter((camp,inx)=> inx < 6 )
-  // console.log(popularCamps)
+  // //(popularCamps)
   return (
     <div>
       <Container>

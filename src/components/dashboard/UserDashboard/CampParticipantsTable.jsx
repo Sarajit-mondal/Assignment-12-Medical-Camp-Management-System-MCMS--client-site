@@ -10,7 +10,7 @@ const CampParticipantsTable = ({ participants, onFeedback, onCancel,refetch,tota
   const {user} = useAuth()
 
   const onSubmit = () =>{
-    console.log("paymnet doing")
+    //("paymnet doing")
   }
   //close model
   const closeModal = () =>{

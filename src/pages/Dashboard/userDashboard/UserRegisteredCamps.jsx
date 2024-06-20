@@ -23,7 +23,7 @@ const [showPerPage,setShowPerPage] = useState(5)
 const [currentPage,setCurrentPage] = useState(1)
 const total = async()=>{
   const { data } = await axiosCommon.get(`/allcampCount`);
-  console.log("count data",data.registeredCount)
+  //("count data",data.registeredCount)
     setTotalData(data.registeredCount)
     
 }
@@ -67,7 +67,7 @@ const {data : participant = [],refetch} = useQuery({
       }    
       //delete joined camp
       const handleCancel = async(id) => {
-        console.log(`Cancel participation for id: ${id}`);
+        //(`Cancel participation for id: ${id}`);
         // Implement cancel functionality
         try {
           Swal.fire({

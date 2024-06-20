@@ -15,7 +15,7 @@ const [showPerPage,setShowPerPage] = useState(5)
 const [currentPage,setCurrentPage] = useState(1)
 const total = async()=>{
   const { data } = await axiosCommon.get(`/allcampCount`);
-  console.log("count data",data.count)
+  //("count data",data.count)
     setTotalData(data.allMyPaymentsCount)
  
 }
@@ -38,7 +38,7 @@ useEffect(()=>{
 },[currentPage,totalData,showPerPage])
 
 
-console.log(paymentHistores)
+//(paymentHistores)
   return (
     <div className='space-y-4'>
       <Helmet title='Payment History'></Helmet>

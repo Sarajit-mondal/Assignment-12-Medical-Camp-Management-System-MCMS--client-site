@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
     try {
       const {data} = axiosCommon.post('/users',infoUser)
     } catch (error) {
-      console.log(error)
+      //(error)
     }
   }
 

@@ -21,8 +21,8 @@ const SignUp = () => {
   const {signInWithFacebook,signInWithGoogle,loading,setLoading,updateUserProfile,createUser} = useAuth()
 
   const onSubmit =async(data) => {
-    // console.log(data);
-    // console.log(data.files[0]);
+    // //(data);
+    // //(data.files[0]);
    const image = await useImageUpload(data.files[0])
    
   try {

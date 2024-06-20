@@ -8,12 +8,14 @@ import UpdateCampFrom from '../../../components/model/UpdateCampFrom';
 import { useImageUpload } from '../../../hooks/useImageUpload';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async'
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 function ManageCamps() {
 const axiosCommon = useAxiosCommon()
 const [isOpen,setIsOpen] = useState(false)
 const [updatecamp,setUpdatecamp] = useState([])
 const [loading,setLoading] = useState(false)
+const axiosSecure = useAxiosSecure()
 //search and sort
 const [searchText, setSearchText] = useState('');
 const [sortOption, setSortOption] = useState('');
@@ -58,7 +60,7 @@ const handleSort = async(e) => {
   getAllCampData(sortValue)
   setSortOption(sortValue)
 };
-console.log(camps)
+//(camps)
 const onSubmit =async(data) =>{
 setLoading(true)
 const CampName = data.CampName

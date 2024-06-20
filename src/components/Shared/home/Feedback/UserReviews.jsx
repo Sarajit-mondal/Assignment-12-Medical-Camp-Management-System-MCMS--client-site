@@ -29,7 +29,7 @@ const getAllFeedback =async()=>{
   setAllReview(data)
 }
 
-console.log(allReview)
+//(allReview)
   const isSmallDevice = window.innerWidth < 700
   return (
     <div data-aos="fade-right" className="flex justify-between gap-16 my-16">

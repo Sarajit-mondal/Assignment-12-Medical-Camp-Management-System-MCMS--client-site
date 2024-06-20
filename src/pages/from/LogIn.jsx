@@ -13,7 +13,7 @@ const LogIn = () => {
   const navgate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
-  console.log(from)
+  //(from)
   const {
     register,
     handleSubmit,
@@ -23,7 +23,7 @@ const LogIn = () => {
   const {signInWithFacebook,signInWithGoogle,loading,setLoading,signIn} = useAuth()
 
   const onSubmit = async(data) => {
-    console.log(data);
+    //(data);
 
     try {
       //login user

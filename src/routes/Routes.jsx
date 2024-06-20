@@ -32,6 +32,18 @@ export const router = createBrowserRouter([
       element: <Home></Home>
     },
     {
+      path: '/success_payment',
+      element: <Home></Home>
+    },
+    {
+      path: '/cancel_payment',
+      element: <Home></Home>
+    },
+    {
+      path: '/fail_payment',
+      element: <Home></Home>
+    },
+    {
       path: '/allCamps',
       element: <AvailableCamps></AvailableCamps>
     },

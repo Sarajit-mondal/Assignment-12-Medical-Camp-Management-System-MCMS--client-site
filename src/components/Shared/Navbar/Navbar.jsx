@@ -14,8 +14,8 @@ const Navbar = () => {
   const { user, logOutFirebase } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
 
-  console.log(user?.displayName)
-  console.log(user)
+  //(user?.displayName)
+  //(user)
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
