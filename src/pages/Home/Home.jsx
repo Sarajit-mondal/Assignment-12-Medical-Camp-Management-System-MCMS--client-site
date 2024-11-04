@@ -8,31 +8,34 @@ import {  useLocation } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Home() {
-  const location = useLocation()
+  let location = useLocation()
    console.log(location.pathname)
    if(location.pathname === '/success_payment'){
+    location = ''
     Swal.fire({
       position: "center",
       icon: "success",
       title: "Payment SuccessFull",
       showConfirmButton: false,
-      timer: 3000
+      timer: 2500
     });
    }else if(location.pathname === '/fail_payment'){
+     location = ''
     Swal.fire({
       position: "center",
       icon: "error",
       title: "Payment Fail Try Agian",
       showConfirmButton: false,
-      timer: 1500
+      timer: 2500
     });
    }else if(location.pathname === '/cancel_payment'){
+     location = ''
     Swal.fire({
       position: "center",
       icon: "error",
       title: "Payment Cancel ",
       showConfirmButton: false,
-      timer: 1500
+      timer: 2500
     });
    }
   return (
