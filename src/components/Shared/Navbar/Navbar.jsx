@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import logo from '../../../assets/logo.png'
 import { MdSpaceDashboard } from "react-icons/md";
-import { LuLogOut } from "react-icons/lu";
+import { LuLogOut,LuLogIn } from "react-icons/lu";
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import AllNavLink from './AllNavLink'
@@ -101,7 +101,7 @@ const Navbar = () => {
                     </>
                   ) : (
                     <>
-
+                     <Link  to='login'  className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer flex items-center gap-2'><LuLogIn className="text-blue-500"/> LogIn</Link>
                     </>
                   )}
                 </div>
