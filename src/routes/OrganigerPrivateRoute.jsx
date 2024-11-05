@@ -9,9 +9,13 @@ const {loading} = useAuth()
 const [role,isLoading] =useRole()
 
 if(loading && isLoading) return <LoadingSpinner />
-if(role === "Organizer") return children
+if(role === "Organizer"){
+    return {children}
+}else{
+    return <ErrorPage />
+}
 
-return <ErrorPage />
+
 
 }
 

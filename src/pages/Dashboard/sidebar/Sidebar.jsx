@@ -80,13 +80,10 @@ const Sidebar = () => {
             <nav onClick={handleToggle}>
             
               {
-                role ==="Participant" &&  <UserLinks />
+                role ==="Participant" ?  <UserLinks /> : <OrganizarLinks />
               }
                {/* UserLinks */}
-               {
-                role ==="Organizer" &&<OrganizarLinks />
-                
-              } 
+             
             
 
             </nav>

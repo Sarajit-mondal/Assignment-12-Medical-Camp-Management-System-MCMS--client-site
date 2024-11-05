@@ -13,7 +13,6 @@ import AllNavLink from './AllNavLink'
 const Navbar = () => {
   const { user, logOutFirebase } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
-
   //(user?.displayName)
   //(user)
   return (
@@ -51,7 +50,7 @@ const Navbar = () => {
                   {/* Avatar */}
                   <img
                     className='rounded-full size-10'
-                    src={user && user.photoURL ? user.photoURL : avatarImg}
+                    src={user && user.photoURL ? user?.photoURL : avatarImg}
                     alt='profile'
 
                   />
