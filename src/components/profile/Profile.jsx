@@ -24,7 +24,7 @@ const Profile = () => {
     }else{
         image = await useImageUpload(data.files[0])
     }
-
+   console.log(image)
     try {
       await updateUserProfile(name,image)
       toast.success("Profile Update Success")

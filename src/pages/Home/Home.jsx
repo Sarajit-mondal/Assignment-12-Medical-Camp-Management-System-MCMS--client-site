@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 
 function Home() {
   let location = useLocation()
-   console.log(location.pathname)
    if(location.pathname === '/success_payment'){
     location = ''
     Swal.fire({

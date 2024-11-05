@@ -13,6 +13,7 @@ import AllNavLink from './AllNavLink'
 const Navbar = () => {
   const { user, logOutFirebase } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  console.log(user)
   //(user?.displayName)
   //(user)
   return (
