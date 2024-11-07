@@ -1,6 +1,6 @@
 
 
-
+import Marquee from "react-fast-marquee";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -13,6 +13,12 @@ import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 function Slider() {
   return (
     <div className="text-center z-0 mt-5">
+     <marquee class="bg-gray-100 text-gray-800 p-4 text-lg border border-gray-300 rounded-md">
+  <span className="text-red-500">  To access the admin panel, log in with:</span>
+    <span class="font-semibold text-blue-500">Email:</span> sarajitmandal01@gmail.com |
+    <span class="font-semibold text-blue-500">Password:</span> 111111
+</marquee>
+
     <Swiper
       navigation={true}
       freeMode={true}

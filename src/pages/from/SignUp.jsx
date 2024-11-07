@@ -84,7 +84,7 @@ await createUser(data.email,data.password)
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-left text-gray-700">
-              Email
+              Name
             </label>
             <input
               type="text"
